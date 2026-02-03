@@ -70,14 +70,14 @@
 							side="top"
 						>
 							<DropdownMenu.Item
-								onSelect={() => goto('/account')}
+								onSelect={() => goto(resolve('/account'))}
 								class="group flex cursor-pointer items-center gap-3 rounded-md px-2 py-2 text-sm/5 text-zinc-900 hover:bg-gray-100 focus:bg-gray-100 focus:outline-2 focus:outline-yellow-400"
 							>
 								<CircleUser class="size-5 text-zinc-500 group-hover:text-yellow-400 group-focus:text-yellow-400" />
 								Konto
 							</DropdownMenu.Item>
 							<DropdownMenu.Item
-								onSelect={() => goto('/settings')}
+								onSelect={() => goto(resolve('/settings'))}
 								class="group flex cursor-pointer items-center gap-3 rounded-md px-2 py-2 text-sm/5 text-zinc-900 hover:bg-gray-100 focus:bg-gray-100 focus:outline-2 focus:outline-yellow-400"
 							>
 								<Settings class="size-5 text-zinc-500 group-hover:text-yellow-400 group-focus:text-yellow-400" />
