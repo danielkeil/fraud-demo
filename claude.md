@@ -1,7 +1,9 @@
 ## Project Guidelines
 
-for git commit and push conventions, see [git-commit](./doc/ai/git.md)
+- For git commit and push conventions, see [git-commit](./doc/ai/git.md)
+- For frontend architecture, see [architecture](./doc/ai/architecture.md)
 
 ## Mandatory Rules
 
-Before many any git commits, read and follow the `./doc/ai/git.md`
+- Before making any git commits, read and follow the `./doc/ai/git.md`
+- Before creating new components or modules, read and follow the `./doc/ai/architecture.md`
