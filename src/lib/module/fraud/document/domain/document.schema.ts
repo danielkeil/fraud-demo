@@ -34,5 +34,6 @@ export const documentSchema = v.object({
 });
 
 export type Rectangle = v.InferOutput<typeof rectangleSchema>;
+export type Ocr = v.InferOutput<typeof ocrSchema>;
 export type Anomaly = v.InferOutput<typeof anomalySchema>;
 export type Document = v.InferOutput<typeof documentSchema>;

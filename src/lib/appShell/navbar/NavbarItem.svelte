@@ -1,5 +1,6 @@
 <script lang="ts">
 	import type { Snippet } from 'svelte'
+    import {resolve} from "$app/paths";
 
 	type Props = {
 		current?: boolean
