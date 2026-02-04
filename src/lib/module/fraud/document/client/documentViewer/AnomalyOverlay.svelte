@@ -31,7 +31,7 @@
 		{#if anomaly.details}
 			<Popover.Root>
 				<Popover.Trigger
-					class="pointer-events-auto flex size-6 items-center justify-center rounded-full bg-red-500 text-white outline-none hover:bg-red-600 focus:ring-2 focus:ring-yellow-400 focus:ring-offset-1"
+					class="pointer-events-auto flex size-6 items-center justify-center rounded-full bg-red-500 text-red-50 outline-none hover:bg-red-600 focus:ring-2 focus:ring-black focus:ring-offset-1"
 					aria-label="Show anomaly details"
 				>
 					<Info class="size-4" />
@@ -41,16 +41,14 @@
 						side="top"
 						align="start"
 						sideOffset={8}
-						class="z-50 max-w-xs rounded-lg border border-zinc-200 bg-white p-3 text-sm text-zinc-700 shadow-lg"
+						class="z-50 max-w-xs rounded-lg border border-zinc-200 bg-white p-3 text-sm text-zinc-700 shadow-lg focus:outline-none"
 					>
 						{anomaly.details}
 					</Popover.Content>
 				</Popover.Portal>
 			</Popover.Root>
 		{/if}
-		<span
-			class="rounded bg-red-500 px-2 py-1 text-sm font-medium whitespace-nowrap text-white"
-		>
+		<span class="rounded bg-red-500 px-2 py-1 text-sm font-medium whitespace-nowrap text-white">
 			{label}
 		</span>
 	</div>

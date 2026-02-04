@@ -10,7 +10,7 @@
 	let { title, description, children }: Props = $props();
 </script>
 
-<div class="px-4 pt-7 sm:px-6 lg:px-10">
+<div class="pt-5 pb-4 border-b border-b-zinc-200">
 	<div class="sm:flex sm:items-center">
 		<div class="sm:flex-auto">
 			<h1 class="text-lg font-semibold text-zinc-900">{title}</h1>
@@ -19,7 +19,7 @@
 			{/if}
 		</div>
 		{#if children}
-			<div class="mt-4 sm:mt-0 sm:ml-16 sm:flex-none">
+			<div class="sm:ml-16 sm:flex-none">
 				{@render children()}
 			</div>
 		{/if}

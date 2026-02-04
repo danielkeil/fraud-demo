@@ -1,7 +1,8 @@
 <script lang="ts">
 	import { Popover } from 'bits-ui';
-	import { Button, Toggle } from '$lib/designSystem/primitives';
-	import { ColorPicker, ocrColors, type OcrColor } from '$lib/designSystem/ColorPicker';
+	import Button from '$lib/designSystem/primitives/Button.svelte';
+	import Toggle from '$lib/designSystem/primitives/Toggle.svelte';
+	import { ColorPicker, ocrColors, type OcrColor } from '$lib/designSystem/colorPicker';
 	import SuspectedFraudButton from './SuspectedFraudButton.svelte';
 
 	type Props = {
@@ -40,14 +41,18 @@
 	);
 </script>
 
+{#snippet separator()}
+	<div class="h-6 w-px bg-zinc-200"></div>
+{/snippet}
+
 <div class="flex items-center gap-3 rounded-lg border border-zinc-200 bg-white p-1 pl-4">
 	<Toggle label="Anomalies" checked={showAnomalies} onCheckedChange={onToggleAnomalies} />
 
-	<div class="h-6 w-px bg-zinc-200"></div>
+	{@render separator()}
 
 	<Toggle label="OCR" checked={showOcr} onCheckedChange={onToggleOcr} />
 
-	<div class="h-6 w-px bg-zinc-200"></div>
+	{@render separator()}
 
 	<Popover.Root>
 		<Popover.Trigger
@@ -61,13 +66,13 @@
 		</Popover.Portal>
 	</Popover.Root>
 
-	<div class="h-6 w-px bg-zinc-200"></div>
+	{@render separator()}
 
 	<Button variant="plain" onclick={onZoomOut}>-</Button>
 	<Button variant="plain" class="w-12" onclick={onReset}>{scalePercent}%</Button>
 	<Button variant="plain" onclick={onZoomIn}>+</Button>
 
-	<div class="h-6 w-px bg-zinc-200"></div>
+	{@render separator()}
 
 	<SuspectedFraudButton isFlagged={suspectedFraud} onToggle={onSuspectedFraudChange} />
 </div>

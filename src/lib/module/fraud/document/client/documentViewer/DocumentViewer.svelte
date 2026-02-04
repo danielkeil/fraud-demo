@@ -126,7 +126,7 @@
 		</div>
 	</div>
 	<div class="relative -mx-4 h-[1px] border-t border-zinc-200 bg-white px-8"></div>
-	<div class="relative flex h-[60px] items-center justify-center bg-white">
+	<div class="relative flex h-[60px] items-center justify-center bg-zinc-50">
 		<ShortcutsButton />
 		<DocumentViewerToolbar
 			{scale}

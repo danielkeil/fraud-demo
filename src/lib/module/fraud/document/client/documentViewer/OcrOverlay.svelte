@@ -1,7 +1,7 @@
 <script lang="ts">
 	import type { Ocr } from '$lib/module/fraud/document';
 	import { uniformScaleStrategy } from './uniformScale';
-	import { ocrColors, type OcrColor } from '$lib/designSystem/ColorPicker';
+	import { ocrColors, type OcrColor } from '$lib/designSystem/colorPicker';
 
 	type Props = {
 		ocr: Ocr;

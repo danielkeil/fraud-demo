@@ -3,7 +3,7 @@
 	import { Toolbar, Popover } from 'bits-ui';
 	import { browser } from '$app/environment';
 
-	// todo: handle to Deprecated browser.platform ( out of scope for this demo )
+	// todo: handle to deprecated browser.platform ( out of scope for this demo )
 	const isMac = browser ? navigator.platform?.toUpperCase().includes('MAC') : false;
 	let platform = $state(isMac ? 'mac' : 'windows');
 

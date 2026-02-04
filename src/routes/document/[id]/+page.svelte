@@ -50,7 +50,7 @@
 				Suspected Fraud
 			</span>
 		</PageHeader>
-		<div class="mt-2 flex h-[calc(100vh-5.5rem)] flex-col">
+		<div class="mt-2 flex h-[calc(100vh-6rem-1px)] flex-col">
 			<DocumentViewer
 				{document}
 				{showAnomalies}

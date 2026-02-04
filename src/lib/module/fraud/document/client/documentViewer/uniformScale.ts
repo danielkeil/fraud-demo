@@ -1,13 +1,13 @@
 import type { Rectangle } from '$lib/module/fraud/document';
 
-export type RenderRect = {
+type RenderRect = {
 	left: string;
 	top: string;
 	width: string;
 	height: string;
 };
 
-export type UniformScaleMap = (sourceRect: Rectangle, scale: number) => RenderRect;
+type UniformScaleMap = (sourceRect: Rectangle, scale: number) => RenderRect;
 
 export const uniformScaleStrategy: UniformScaleMap = (sourceRect, scale) => ({
 	left: `${sourceRect.x * scale}px`,
