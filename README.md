@@ -92,6 +92,14 @@ export const getDocument = query(v.string(), async (id) => {
 
 Accessibility was a priority throughout. Bits UI provides accessible primitives out of the box. Anomaly overlays are sorted in reading order so keyboard navigation follows a logical flow. Keyboard shortcuts are available for common actions.
 
+## AI-Assisted Development
+
+This project was built with AI assistance—not as a moonshot experiment, but as a practical way to move faster. The architecture and structure are not AI-generated; they come from patterns I've used on previous projects.
+
+**[Claude Code](https://claude.ai/code)** (Opus 4.5) handled some of the coding. I added AI-specific documentation covering newer SvelteKit features like remote functions—this helps the model stay current with APIs that may have changed since its training cutoff. I also provided reference implementations and architectural guidance so the AI could follow established patterns rather than invent its own.
+
+For planning, I used a **custom agent built on the ChatGPT API**. The workflow involved refining initial ideas, building base prompts, and researching outside of AI tools. Once the direction was clear, I handed it off to Claude Code for implementation—followed by 2-3 rounds of refinement and a final cleanup pass.
+
 ## Running Locally
 
 ```bash
