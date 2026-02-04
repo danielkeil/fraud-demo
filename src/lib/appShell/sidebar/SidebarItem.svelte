@@ -1,16 +1,16 @@
 <script lang="ts">
-	import type { Snippet } from 'svelte'
-	import { fly } from 'svelte/transition'
+	import type { Snippet } from 'svelte';
+	import { fly } from 'svelte/transition';
 
 	type Props = {
-		current?: boolean
-		children: Snippet
-		class?: string
-		href?: string
-		onclick?: () => void
-	}
+		current?: boolean;
+		children: Snippet;
+		class?: string;
+		href?: string;
+		onclick?: () => void;
+	};
 
-	let { current = false, children, href, onclick, ...props }: Props = $props()
+	let { current = false, children, href, onclick, ...props }: Props = $props();
 
 	const itemClasses = $derived([
 		// Base
@@ -23,7 +23,7 @@
 		current && '[&>svg]:text-zinc-900 rounded-lg bg-zinc-900/5',
 		// Focus
 		'focus:outline-2 focus:outline-yellow-400'
-	])
+	]);
 </script>
 
 <span class={['relative', props.class]}>
@@ -38,7 +38,13 @@
 			{@render children()}
 		</a>
 	{:else}
-		<button type="button" class={['cursor-default', itemClasses]} data-current={current ? 'true' : undefined} {onclick} {...props}>
+		<button
+			type="button"
+			class={['cursor-default', itemClasses]}
+			data-current={current ? 'true' : undefined}
+			{onclick}
+			{...props}
+		>
 			{@render children()}
 		</button>
 	{/if}

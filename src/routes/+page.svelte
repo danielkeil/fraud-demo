@@ -5,6 +5,5 @@
 <Page>
 	<PageHeader title="Dashboard" description="" />
 
-	<PageContent>
-	</PageContent>
+	<PageContent></PageContent>
 </Page>

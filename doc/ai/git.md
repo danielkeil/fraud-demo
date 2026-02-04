@@ -19,18 +19,18 @@ Use **Conventional Commits** for all commit messages.
 
 ### Types
 
-| Type       | Description                                       |
-|------------|---------------------------------------------------|
-| `feat`     | New behavior or capability                        |
-| `fix`      | Bug fix                                           |
-| `refactor` | Internal change, no behavior change               |
-| `perf`     | Performance improvement                           |
-| `docs`     | Documentation only                                |
-| `test`     | Tests only                                        |
-| `chore`    | Tooling, deps, config                             |
-| `build`    | Build system or dependencies                      |
-| `ci`       | CI/CD pipelines                                   |
-| `ai`       | AI config (claude.md, skills, commands, ai docs)  |
+| Type       | Description                                      |
+| ---------- | ------------------------------------------------ |
+| `feat`     | New behavior or capability                       |
+| `fix`      | Bug fix                                          |
+| `refactor` | Internal change, no behavior change              |
+| `perf`     | Performance improvement                          |
+| `docs`     | Documentation only                               |
+| `test`     | Tests only                                       |
+| `chore`    | Tooling, deps, config                            |
+| `build`    | Build system or dependencies                     |
+| `ci`       | CI/CD pipelines                                  |
+| `ai`       | AI config (claude.md, skills, commands, ai docs) |
 
 ### Rules
 

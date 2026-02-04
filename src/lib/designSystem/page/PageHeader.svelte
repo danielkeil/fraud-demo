@@ -1,13 +1,13 @@
 <script lang="ts">
-	import type { Snippet } from 'svelte'
+	import type { Snippet } from 'svelte';
 
 	type Props = {
-		title: string
-		description?: string
-		children?: Snippet
-	}
+		title: string;
+		description?: string;
+		children?: Snippet;
+	};
 
-	let { title, description, children }: Props = $props()
+	let { title, description, children }: Props = $props();
 </script>
 
 <div class="px-4 pt-7 sm:px-6 lg:px-10">
@@ -19,7 +19,7 @@
 			{/if}
 		</div>
 		{#if children}
-			<div class="mt-4 sm:ml-16 sm:mt-0 sm:flex-none">
+			<div class="mt-4 sm:mt-0 sm:ml-16 sm:flex-none">
 				{@render children()}
 			</div>
 		{/if}

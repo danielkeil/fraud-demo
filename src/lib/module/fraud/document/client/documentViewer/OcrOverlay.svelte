@@ -19,7 +19,10 @@
 	class="pointer-events-none absolute flex items-center border {colorConfig.border} {colorConfig.bg}"
 	style="left: {renderRect.left}; top: {renderRect.top}; width: {renderRect.width}; height: {renderRect.height};"
 >
-	<span class="truncate px-1 text-xs {colorConfig.text}" style="font-size: {Math.max(10, 12 * scale)}px;">
+	<span
+		class="truncate px-1 text-xs {colorConfig.text}"
+		style="font-size: {Math.max(10, 12 * scale)}px;"
+	>
 		{ocr.text}
 	</span>
 </div>

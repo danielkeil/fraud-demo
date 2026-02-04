@@ -25,9 +25,4 @@
 	{/snippet}
 
 	{@render children()}
-
 </SidebarLayout>
-
-
-
-

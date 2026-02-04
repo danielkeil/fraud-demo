@@ -55,8 +55,8 @@ module/<feature-name>/
 
 If you are familiar with Domain-Driven Design:
 
-- A **feature** corresponds to a *bounded context*
-- A **sub-feature** corresponds to an *aggregate*
+- A **feature** corresponds to a _bounded context_
+- A **sub-feature** corresponds to an _aggregate_
 - Simple features (single aggregate) use the feature name as the aggregate
 
 ## Structure Goal

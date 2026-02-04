@@ -1,14 +1,14 @@
 <script lang="ts">
-	import type { Snippet } from 'svelte'
+	import type { Snippet } from 'svelte';
 
 	type Props = {
-		children: Snippet
-	}
+		children: Snippet;
+	};
 
-	let { children }: Props = $props()
+	let { children }: Props = $props();
 </script>
 
-<div class="px-4 sm:px-6 lg:px-10let pb-8">
+<div class="lg:px-10let px-4 pb-8 sm:px-6">
 	{#if children}
 		{@render children()}
 	{/if}

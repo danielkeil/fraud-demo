@@ -112,8 +112,8 @@
 			</div>
 		</div>
 	</div>
-    <div class="-mx-4 px-8 relative border-t border-zinc-200 bg-white h-[1px]"></div>
-    <div class="relative bg-white h-[60px] flex items-center justify-center">
+	<div class="relative -mx-4 h-[1px] border-t border-zinc-200 bg-white px-8"></div>
+	<div class="relative flex h-[60px] items-center justify-center bg-white">
 		<ShortcutsButton />
 		<DocumentViewerToolbar
 			{scale}
@@ -128,6 +128,6 @@
 			{onToggleOcr}
 			{onOcrColorChange}
 			{onSuspectedFraudChange}
-        />
+		/>
 	</div>
 </div>

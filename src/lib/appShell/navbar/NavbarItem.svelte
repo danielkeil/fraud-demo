@@ -1,17 +1,17 @@
 <script lang="ts">
-	import type { Snippet } from 'svelte'
-    import {resolve} from "$app/paths";
+	import type { Snippet } from 'svelte';
+	import { resolve } from '$app/paths';
 
 	type Props = {
-		current?: boolean
-		children: Snippet
-		class?: string
-		href?: string
-		onclick?: () => void
-		'aria-label'?: string
-	}
+		current?: boolean;
+		children: Snippet;
+		class?: string;
+		href?: string;
+		onclick?: () => void;
+		'aria-label'?: string;
+	};
 
-	let { current = false, children, href, onclick, ...props }: Props = $props()
+	let { current = false, children, href, onclick, ...props }: Props = $props();
 
 	const itemClasses = [
 		// Base
@@ -24,7 +24,7 @@
 		'hover:bg-zinc-900/5 hover:[&>svg]:text-zinc-900',
 		// Active
 		'active:bg-zinc-900/5 active:[&>svg]:text-zinc-900'
-	]
+	];
 </script>
 
 <span class={['relative', props.class]}>
@@ -33,7 +33,13 @@
 			{@render children()}
 		</a>
 	{:else}
-		<button type="button" class={['cursor-default', itemClasses]} data-current={current ? 'true' : undefined} {onclick} {...props}>
+		<button
+			type="button"
+			class={['cursor-default', itemClasses]}
+			data-current={current ? 'true' : undefined}
+			{onclick}
+			{...props}
+		>
 			{@render children()}
 		</button>
 	{/if}

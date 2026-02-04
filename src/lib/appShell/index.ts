@@ -1,11 +1,11 @@
 // Layout
-export { default as SidebarLayout } from './layout/SidebarLayout.svelte'
+export { default as SidebarLayout } from './layout/SidebarLayout.svelte';
 
 // Sidebar
-export * from './sidebar'
+export * from './sidebar';
 
 // Navbar
-export * from './navbar'
+export * from './navbar';
 
 // App-specific
-export { default as AppSidebar } from './AppSidebar.svelte'
+export { default as AppSidebar } from './AppSidebar.svelte';

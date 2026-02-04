@@ -44,16 +44,35 @@ export const mockedDocuments = [
 			{ text: '11.385,92 €', rect: { x: 650, y: 610, width: 105, height: 24 } },
 			// Bankverbindung
 			{ text: 'Bankverbindung:', rect: { x: 50, y: 750, width: 130, height: 18 } },
-			{ text: 'IBAN: DE89 3704 0044 0532 0130 00', rect: { x: 50, y: 780, width: 290, height: 18 } },
+			{
+				text: 'IBAN: DE89 3704 0044 0532 0130 00',
+				rect: { x: 50, y: 780, width: 290, height: 18 }
+			},
 			{ text: 'BIC: COBADEFFXXX', rect: { x: 50, y: 805, width: 170, height: 18 } },
 			// Footer
 			{ text: 'Vielen Dank für Ihren Auftrag!', rect: { x: 280, y: 920, width: 240, height: 22 } }
 		],
 		anomalies: [
-			{ id: 'anomaly-1', type: 'manipulierter_betrag', rect: { x: 640, y: 600, width: 120, height: 40 } },
-			{ id: 'anomaly-2', type: 'verdächtige_iban', rect: { x: 40, y: 770, width: 310, height: 35 } },
-			{ id: 'anomaly-3', type: 'schriftart_abweichung', rect: { x: 650, y: 425, width: 110, height: 30 } },
-			{ id: 'anomaly-4', type: 'datum_manipulation', rect: { x: 540, y: 115, width: 170, height: 30 } }
+			{
+				id: 'anomaly-1',
+				type: 'manipulierter_betrag',
+				rect: { x: 640, y: 600, width: 120, height: 40 }
+			},
+			{
+				id: 'anomaly-2',
+				type: 'verdächtige_iban',
+				rect: { x: 40, y: 770, width: 310, height: 35 }
+			},
+			{
+				id: 'anomaly-3',
+				type: 'schriftart_abweichung',
+				rect: { x: 650, y: 425, width: 110, height: 30 }
+			},
+			{
+				id: 'anomaly-4',
+				type: 'datum_manipulation',
+				rect: { x: 540, y: 115, width: 170, height: 30 }
+			}
 		]
 	}
 ];

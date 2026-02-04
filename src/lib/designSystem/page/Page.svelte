@@ -1,11 +1,11 @@
 <script lang="ts">
-	import type { Snippet } from 'svelte'
+	import type { Snippet } from 'svelte';
 
 	type Props = {
-		children?: Snippet
-	}
+		children?: Snippet;
+	};
 
-	let { children }: Props = $props()
+	let { children }: Props = $props();
 </script>
 
 <div class="w-full px-4">

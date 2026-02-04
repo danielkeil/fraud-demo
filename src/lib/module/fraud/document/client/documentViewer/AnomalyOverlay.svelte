@@ -25,7 +25,9 @@
 	data-anomaly-id={anomaly.id}
 	data-anomaly-type={anomaly.type}
 >
-	<span class="absolute -top-6 left-0 whitespace-nowrap rounded bg-red-500 px-1.5 py-0.5 text-xs font-medium text-white">
+	<span
+		class="absolute -top-6 left-0 rounded bg-red-500 px-1.5 py-0.5 text-xs font-medium whitespace-nowrap text-white"
+	>
 		{label}
 	</span>
 </div>
