@@ -47,10 +47,13 @@
 
 	<SidebarBody>
 		<SidebarSection>
-			<SidebarHeading>Verwaltung</SidebarHeading>
-			<SidebarItem href={resolve('/demo')} current={isDemoActive}>
+			<SidebarHeading>Fraud</SidebarHeading>
+			<SidebarItem
+				href={resolve('/document/550e8400-e29b-41d4-a716-446655440000')}
+				current={isDemoActive}
+			>
 				<FileText class="size-5" />
-				<SidebarLabel>Demo</SidebarLabel>
+				<SidebarLabel>Demo Rechnung</SidebarLabel>
 			</SidebarItem>
 		</SidebarSection>
 	</SidebarBody>
