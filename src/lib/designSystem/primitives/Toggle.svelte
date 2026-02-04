@@ -9,6 +9,7 @@
 		disabled?: boolean
 		variant?: 'default' | 'bordered'
 		class?: string
+		onCheckedChange?: (checked: boolean) => void
 	}
 
 	let {
@@ -19,6 +20,7 @@
 		disabled = false,
 		variant = 'default',
 		class: className,
+		onCheckedChange,
 	}: Props = $props()
 
 	const variantStyles = {
@@ -33,6 +35,7 @@
 		{name}
 		{value}
 		{disabled}
+		{onCheckedChange}
 		class="relative inline-flex h-6 w-10 shrink-0 cursor-pointer items-center rounded-full bg-zinc-200 transition-colors outline-none focus:ring-2 focus:ring-offset-2 focus:ring-yellow-400 disabled:cursor-not-allowed disabled:opacity-50 data-[state=checked]:bg-yellow-400"
 	>
 		<Switch.Thumb

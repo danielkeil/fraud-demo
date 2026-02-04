@@ -14,6 +14,12 @@ export const ocrSchema = v.object({
 	rect: rectangleSchema
 });
 
+export const anomalySchema = v.object({
+	id: v.string(),
+	type: v.string(),
+	rect: rectangleSchema
+});
+
 export const documentSchema = v.object({
 	id: uuidSchema,
 	images: v.array(
@@ -23,5 +29,10 @@ export const documentSchema = v.object({
 			height: v.number()
 		})
 	),
-	ocrs: v.array(ocrSchema)
+	ocrs: v.array(ocrSchema),
+	anomalies: v.array(anomalySchema)
 });
+
+export type Rectangle = v.InferOutput<typeof rectangleSchema>;
+export type Anomaly = v.InferOutput<typeof anomalySchema>;
+export type Document = v.InferOutput<typeof documentSchema>;
