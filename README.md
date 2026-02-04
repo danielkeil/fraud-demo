@@ -107,6 +107,3 @@ pnpm install
 pnpm dev
 ```
 
-## Final Thoughts
-
-It was fun to build something like this outside the usual React + TanStack setup. Svelte 5's runes (`$state`, `$derived`, `$props`) feel like a natural evolution, and the component model remains refreshingly simple compared to some alternatives.
