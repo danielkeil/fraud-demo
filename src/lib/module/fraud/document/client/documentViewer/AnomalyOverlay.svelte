@@ -41,7 +41,7 @@
 						side="top"
 						align="start"
 						sideOffset={8}
-						class="z-50 max-w-xs rounded-lg border border-zinc-200 bg-white p-3 text-sm text-zinc-700 shadow-lg outline-none focus:ring-2 focus:ring-yellow-400"
+						class="z-50 max-w-xs rounded-lg border border-zinc-200 bg-white p-3 text-sm text-zinc-700 shadow-lg"
 					>
 						{anomaly.details}
 					</Popover.Content>
