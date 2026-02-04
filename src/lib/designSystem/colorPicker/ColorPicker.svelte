@@ -8,20 +8,20 @@
 	};
 
 	export const ocrColors: OcrColor[] = [
-		{ key: 'blue', label: 'Blue', border: 'border-blue-600', text: 'text-blue-700', swatch: 'bg-blue-500' },
-		{ key: 'purple', label: 'Purple', border: 'border-purple-600', text: 'text-purple-700', swatch: 'bg-purple-500' },
-		{ key: 'cyan', label: 'Cyan', border: 'border-cyan-600', text: 'text-cyan-700', swatch: 'bg-cyan-500' },
-		{ key: 'amber', label: 'Amber', border: 'border-amber-500', text: 'text-amber-700', swatch: 'bg-amber-500' },
-		{ key: 'yellow', label: 'Yellow', border: 'border-yellow-500', text: 'text-yellow-700', swatch: 'bg-yellow-400' },
-		{ key: 'black', label: 'Black', border: 'border-zinc-800', text: 'text-zinc-900', swatch: 'bg-zinc-700' },
-		{ key: 'gray', label: 'Gray', border: 'border-zinc-400', text: 'text-zinc-600', swatch: 'bg-zinc-400' },
-		{ key: 'white', label: 'White', border: 'border-zinc-300', text: 'text-zinc-700', swatch: 'bg-white ring-1 ring-zinc-300' }
+		{ key: 'blue', label: 'Blau', border: 'border-blue-600', text: 'text-blue-700', swatch: 'bg-blue-500' },
+		{ key: 'purple', label: 'Violett', border: 'border-purple-600', text: 'text-purple-700', swatch: 'bg-purple-500' },
+		{ key: 'cyan', label: 'Türkis', border: 'border-cyan-600', text: 'text-cyan-700', swatch: 'bg-cyan-500' },
+		{ key: 'amber', label: 'Bernstein', border: 'border-amber-500', text: 'text-amber-700', swatch: 'bg-amber-500' },
+		{ key: 'yellow', label: 'Gelb', border: 'border-yellow-500', text: 'text-yellow-700', swatch: 'bg-yellow-400' },
+		{ key: 'black', label: 'Schwarz', border: 'border-zinc-800', text: 'text-zinc-900', swatch: 'bg-zinc-700' },
+		{ key: 'gray', label: 'Grau', border: 'border-zinc-400', text: 'text-zinc-600', swatch: 'bg-zinc-400' },
+		{ key: 'white', label: 'Weiß', border: 'border-zinc-300', text: 'text-zinc-700', swatch: 'bg-white ring-1 ring-zinc-300' }
 	];
 
 	export const ocrFocusOptions = [
-		{ key: 'sharp', label: 'Sharp', blur: 'backdrop-blur-0' },
-		{ key: 'medium', label: 'Medium', blur: 'backdrop-blur-[1px]' },
-		{ key: 'soft', label: 'Soft', blur: 'backdrop-blur-sm' }
+		{ key: 'sharp', label: 'Keine', blur: 'backdrop-blur-0' },
+		{ key: 'medium', label: 'Mittel', blur: 'backdrop-blur-[1px]' },
+		{ key: 'soft', label: 'Stark', blur: 'backdrop-blur-sm' }
 	];
 
 	export const ocrFontSizes = [
@@ -62,18 +62,18 @@
 
 <div class="min-w-56 rounded-lg border border-zinc-200 bg-white p-4" bind:this={containerRef}>
 	<div class="mb-4 flex items-center justify-between">
-		<h3 class="text-sm font-semibold text-zinc-900">OCR Settings</h3>
+		<h3 class="text-sm font-semibold text-zinc-900">OCR-Einstellungen</h3>
 		<Popover.Close
 			class="rounded p-0.5 text-zinc-400 outline-none hover:text-zinc-600 focus:ring-2 focus:ring-yellow-400 focus:ring-offset-2"
-			aria-label="Close settings"
+			aria-label="Einstellungen schließen"
 		>
 			<X class="size-4" />
 		</Popover.Close>
 	</div>
 
-	<!-- Color -->
+	<!-- Farbe -->
 	<div class="mb-4">
-		<label class="mb-2 block text-xs font-medium text-zinc-500">Color</label>
+		<label class="mb-2 block text-xs font-medium text-zinc-500">Farbe</label>
 		<Toolbar.Root>
 			<Toolbar.Group
 				type="single"
@@ -92,9 +92,9 @@
 		</Toolbar.Root>
 	</div>
 
-	<!-- Focus -->
+	<!-- Hintergrund-Unschärfe -->
 	<div class="mb-4">
-		<label class="mb-2 block text-xs font-medium text-zinc-500">Focus</label>
+		<label class="mb-2 block text-xs font-medium text-zinc-500">Hintergrund-Unschärfe</label>
 		<Toolbar.Root>
 			<Toolbar.Group
 				type="single"
@@ -114,9 +114,9 @@
 		</Toolbar.Root>
 	</div>
 
-	<!-- Font Size -->
+	<!-- Schriftgröße -->
 	<div>
-		<label class="mb-2 block text-xs font-medium text-zinc-500">Font Size</label>
+		<label class="mb-2 block text-xs font-medium text-zinc-500">Schriftgröße</label>
 		<Toolbar.Root>
 			<Toolbar.Group
 				type="single"

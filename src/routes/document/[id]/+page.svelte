@@ -57,7 +57,7 @@
 					? 'bg-red-100 text-red-700'
 					: 'invisible'}"
 			>
-				Suspected Fraud
+				Betrugsverdacht
 			</span>
 		</PageHeader>
 		<div class="flex h-[calc(100vh-5.5rem-1px)] flex-col">
@@ -80,9 +80,9 @@
 	</Page>
 {:else}
 	<Page>
-		<PageHeader title="Document Review" />
+		<PageHeader title="Dokumentenprüfung" />
 		<div class="flex h-[calc(100vh-8rem)] items-center justify-center">
-			<p class="text-zinc-500">Loading document...</p>
+			<p class="text-zinc-500">Dokument wird geladen...</p>
 		</div>
 	</Page>
 {/if}

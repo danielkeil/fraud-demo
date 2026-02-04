@@ -32,7 +32,7 @@
 			<Popover.Root>
 				<Popover.Trigger
 					class="pointer-events-auto flex size-6 items-center justify-center rounded-full bg-red-500 text-red-50 outline-none hover:bg-red-600 focus:ring-2 focus:ring-black focus:ring-offset-1"
-					aria-label="Show anomaly details"
+					aria-label="Anomalie-Details anzeigen"
 				>
 					<Info class="size-4" />
 				</Popover.Trigger>

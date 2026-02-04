@@ -10,26 +10,26 @@
 	const shortcuts = {
 		mac: {
 			toggle: [
-				{ label: 'Toggle Anomalies', keys: ['⌥', '⇧', 'F'] },
-				{ label: 'Toggle OCR', keys: ['⌥', '⇧', 'O'] },
-				{ label: 'Toggle Suspected Fraud', keys: ['⌥', '⇧', 'S'] }
+				{ label: 'Anomalien ein/aus', keys: ['⌥', '⇧', 'F'] },
+				{ label: 'OCR ein/aus', keys: ['⌥', '⇧', 'O'] },
+				{ label: 'Betrugsverdacht ein/aus', keys: ['⌥', '⇧', 'S'] }
 			],
 			zoom: [
-				{ label: 'Zoom In', keys: ['⌥', '⇧', '+'] },
-				{ label: 'Zoom Out', keys: ['⌥', '⇧', '-'] },
-				{ label: 'Reset Zoom', keys: ['⌥', '⇧', '0'] }
+				{ label: 'Vergrößern', keys: ['⌥', '⇧', '+'] },
+				{ label: 'Verkleinern', keys: ['⌥', '⇧', '-'] },
+				{ label: 'Zoom zurücksetzen', keys: ['⌥', '⇧', '0'] }
 			]
 		},
 		windows: {
 			toggle: [
-				{ label: 'Toggle Anomalies', keys: ['Alt', 'Shift', 'F'] },
-				{ label: 'Toggle OCR', keys: ['Alt', 'Shift', 'O'] },
-				{ label: 'Toggle Suspected Fraud', keys: ['Alt', 'Shift', 'S'] }
+				{ label: 'Anomalien ein/aus', keys: ['Alt', 'Shift', 'F'] },
+				{ label: 'OCR ein/aus', keys: ['Alt', 'Shift', 'O'] },
+				{ label: 'Betrugsverdacht ein/aus', keys: ['Alt', 'Shift', 'S'] }
 			],
 			zoom: [
-				{ label: 'Zoom In', keys: ['Alt', 'Shift', '+'] },
-				{ label: 'Zoom Out', keys: ['Alt', 'Shift', '-'] },
-				{ label: 'Reset Zoom', keys: ['Alt', 'Shift', '0'] }
+				{ label: 'Vergrößern', keys: ['Alt', 'Shift', '+'] },
+				{ label: 'Verkleinern', keys: ['Alt', 'Shift', '-'] },
+				{ label: 'Zoom zurücksetzen', keys: ['Alt', 'Shift', '0'] }
 			]
 		}
 	};
@@ -81,10 +81,10 @@
 
 <div class="min-w-96 rounded-lg border border-zinc-200 bg-white p-4">
 	<div class="mb-3 flex items-center justify-between">
-		<h3 class="text-sm font-semibold text-zinc-900">Keyboard Shortcuts</h3>
+		<h3 class="text-sm font-semibold text-zinc-900">Tastenkürzel</h3>
 		<Popover.Close
 			class="rounded p-0.5 text-zinc-400 outline-none hover:text-zinc-600 focus:ring-2 focus:ring-yellow-400 focus:ring-offset-2"
-			aria-label="Close shortcuts panel"
+			aria-label="Tastenkürzel schließen"
 		>
 			<X class="size-4" />
 		</Popover.Close>

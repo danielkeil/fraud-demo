@@ -54,7 +54,7 @@
 {/snippet}
 
 <div class="flex items-center gap-3 rounded-lg border border-zinc-200 bg-white p-1 pl-4">
-	<Toggle label="Anomalies" checked={showAnomalies} onCheckedChange={onToggleAnomalies} />
+	<Toggle label="Anomalien" checked={showAnomalies} onCheckedChange={onToggleAnomalies} />
 
 	{@render separator()}
 
@@ -65,7 +65,7 @@
 	<Popover.Root>
 		<Popover.Trigger
 			class="size-6 rounded-full {currentColor.swatch} ring-offset-2 transition-transform outline-none hover:scale-110 focus:ring-2 focus:ring-yellow-400"
-			aria-label="Change OCR color"
+			aria-label="OCR-Farbe ändern"
 		/>
 		<Popover.Portal>
 			<Popover.Content side="top" align="center" sideOffset={12} class="z-50">

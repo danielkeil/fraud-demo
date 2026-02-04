@@ -17,5 +17,5 @@
 		focus:ring-2 focus:ring-yellow-400 focus:ring-offset-2"
 >
 	<Flag class="size-4" />
-	Suspected Fraud
+	Betrugsverdacht
 </button>
