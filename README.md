@@ -98,7 +98,7 @@ This project was built with AI assistance—not as a moonshot experiment, but as
 
 **[Claude Code](https://claude.ai/code)** (Opus 4.5) handled some of the coding. I added AI-specific documentation covering newer SvelteKit features like remote functions—this helps the model stay current with APIs that may have changed since its training cutoff. I also provided reference implementations and architectural guidance so the AI could follow established patterns rather than invent its own.
 
-For planning, I used a **custom agent built on the ChatGPT API**. The workflow involved refining initial ideas, building base prompts, and researching outside of AI tools. Once the direction was clear, I handed it off to Claude Code for implementation—followed by 2-3 rounds of refinement and a final cleanup pass.
+For planning, I used a **custom agent built on the ChatGPT API**. The workflow per task: refine the idea, build a base prompt, research outside of AI tools. Once the direction was clear, hand it off to Claude Code for implementation—followed by 2-3 rounds of refinement and a final cleanup pass. Around 30 tasks went through this workflow for the demo.
 
 ## Running Locally
 
