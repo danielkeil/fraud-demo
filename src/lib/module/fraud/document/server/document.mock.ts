@@ -1,6 +1,7 @@
 export const mockedDocuments = [
 	{
 		id: '550e8400-e29b-41d4-a716-446655440000',
+		name: 'RE-2024-0847 - Müller & Schmidt GmbH',
 		images: [{ url: '/invoice-mock.png', width: 800, height: 1100 }],
 		ocrs: [
 			// Header

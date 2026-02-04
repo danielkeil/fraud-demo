@@ -41,7 +41,7 @@
 
 {#if document}
 	<Page>
-		<PageHeader title="Document Review">
+		<PageHeader title={document.name}>
 			<span
 				class="inline-flex items-center gap-2 rounded-full px-4 py-1.5 text-base font-medium transition-colors {suspectedFraud
 					? 'bg-red-100 text-red-700'
@@ -50,7 +50,7 @@
 				Suspected Fraud
 			</span>
 		</PageHeader>
-		<div class="mt-2 flex h-[calc(100vh-5rem)] flex-col">
+		<div class="mt-2 flex h-[calc(100vh-5.5rem)] flex-col">
 			<DocumentViewer
 				{document}
 				{showAnomalies}

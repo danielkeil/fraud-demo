@@ -23,6 +23,7 @@ export const anomalySchema = v.object({
 
 export const documentSchema = v.object({
 	id: uuidSchema,
+	name: v.string(),
 	images: v.array(
 		v.object({
 			url: v.string(),
