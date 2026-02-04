@@ -17,7 +17,7 @@
 			<Popover.Content
 				side="top"
 				align="start"
-				sideOffset={8}
+				sideOffset={12}
 				class="z-50"
 			>
 				<ShortcutsPanel />
