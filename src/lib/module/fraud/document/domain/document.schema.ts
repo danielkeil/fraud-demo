@@ -17,7 +17,8 @@ export const ocrSchema = v.object({
 export const anomalySchema = v.object({
 	id: v.string(),
 	type: v.string(),
-	rect: rectangleSchema
+	rect: rectangleSchema,
+	details: v.optional(v.string())
 });
 
 export const documentSchema = v.object({

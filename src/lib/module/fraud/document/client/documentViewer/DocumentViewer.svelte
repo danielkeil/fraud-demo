@@ -10,7 +10,7 @@
 		showAnomalies: boolean;
 		showOcr: boolean;
 		ocrColor: string;
-		suspectedFraud: boolean;
+		suspectedFraud: boolean; // in a real world scenario this would part of the document
 		onToggleAnomalies: (show: boolean) => void;
 		onToggleOcr: (show: boolean) => void;
 		onOcrColorChange: (color: string) => void;
@@ -36,6 +36,19 @@
 
 	const image = $derived(document.images[0]);
 
+	/*
+	 * Sort anomalies in reading order (top-to-bottom, left-to-right)
+	 * for accessible keyboard navigation and proper tab flow.
+	 * This ensures users can tab through anomaly info buttons
+	 * in the same order they would naturally read the document.
+	 */
+	const sortedAnomalies = $derived(
+		[...document.anomalies].sort((a, b) => {
+			if (a.rect.y !== b.rect.y) return a.rect.y - b.rect.y;
+			return a.rect.x - b.rect.x;
+		})
+	);
+
 	function zoomIn() {
 		scale = Math.min(maxScale, scale + scaleStep);
 	}
@@ -53,7 +66,7 @@
 			return;
 		}
 
-		// todo: this needs to be testen on windows and linux
+		// todo: this needs to be tested on windows and linux
 		if (event.code === 'KeyF') {
 			event.preventDefault();
 			onToggleAnomalies?.(!showAnomalies);
@@ -105,7 +118,7 @@
 					{/each}
 				{/if}
 				{#if showAnomalies}
-					{#each document.anomalies as anomaly (anomaly.id)}
+					{#each sortedAnomalies as anomaly (anomaly.id)}
 						<AnomalyOverlay {anomaly} {scale} />
 					{/each}
 				{/if}

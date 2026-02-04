@@ -1,6 +1,8 @@
 <script lang="ts">
 	import type { Anomaly } from '$lib/module/fraud/document';
 	import { uniformScaleStrategy } from './uniformScale';
+	import { Popover } from 'bits-ui';
+	import { Info } from 'lucide-svelte';
 
 	type Props = {
 		anomaly: Anomaly;
@@ -25,9 +27,31 @@
 	data-anomaly-id={anomaly.id}
 	data-anomaly-type={anomaly.type}
 >
-	<span
-		class="absolute -top-6 left-0 rounded bg-red-500 px-1.5 py-0.5 text-xs font-medium whitespace-nowrap text-white"
-	>
-		{label}
-	</span>
+	<div class="absolute -top-8 left-0 flex items-center gap-1.5">
+		{#if anomaly.details}
+			<Popover.Root>
+				<Popover.Trigger
+					class="pointer-events-auto flex size-6 items-center justify-center rounded-full bg-red-500 text-white outline-none hover:bg-red-600 focus:ring-2 focus:ring-yellow-400 focus:ring-offset-1"
+					aria-label="Show anomaly details"
+				>
+					<Info class="size-4" />
+				</Popover.Trigger>
+				<Popover.Portal>
+					<Popover.Content
+						side="top"
+						align="start"
+						sideOffset={8}
+						class="z-50 max-w-xs rounded-lg border border-zinc-200 bg-white p-3 text-sm text-zinc-700 shadow-lg outline-none focus:ring-2 focus:ring-yellow-400"
+					>
+						{anomaly.details}
+					</Popover.Content>
+				</Popover.Portal>
+			</Popover.Root>
+		{/if}
+		<span
+			class="rounded bg-red-500 px-2 py-1 text-sm font-medium whitespace-nowrap text-white"
+		>
+			{label}
+		</span>
+	</div>
 </div>

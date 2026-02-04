@@ -56,12 +56,16 @@ export const mockedDocuments = [
 			{
 				id: 'anomaly-1',
 				type: 'manipulierter_betrag',
-				rect: { x: 640, y: 600, width: 120, height: 40 }
+				rect: { x: 640, y: 600, width: 120, height: 40 },
+				details:
+					'Der Gesamtbetrag weist Pixelartefakte auf, die auf eine nachträgliche Bearbeitung hindeuten. Die Ziffern stimmen nicht mit dem Schriftbild der restlichen Beträge überein.'
 			},
 			{
 				id: 'anomaly-2',
 				type: 'verdächtige_iban',
-				rect: { x: 40, y: 770, width: 310, height: 35 }
+				rect: { x: 40, y: 770, width: 310, height: 35 },
+				details:
+					'Die IBAN ist keinem bekannten Geschäftskonto der Müller & Schmidt GmbH zugeordnet. Abweichung von der registrierten Bankverbindung im Handelsregister.'
 			},
 			{
 				id: 'anomaly-3',
@@ -71,7 +75,9 @@ export const mockedDocuments = [
 			{
 				id: 'anomaly-4',
 				type: 'datum_manipulation',
-				rect: { x: 540, y: 115, width: 170, height: 30 }
+				rect: { x: 540, y: 115, width: 170, height: 30 },
+				details:
+					'Das Rechnungsdatum wurde nachträglich geändert. Metadaten zeigen ursprüngliches Datum: 03.12.2023.'
 			}
 		]
 	}
