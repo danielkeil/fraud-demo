@@ -10,10 +10,14 @@
 		showAnomalies: boolean;
 		showOcr: boolean;
 		ocrColor: string;
+		ocrFocus: string;
+		ocrFontSize: string;
 		suspectedFraud: boolean; // in a real world scenario this would part of the document
 		onToggleAnomalies: (show: boolean) => void;
 		onToggleOcr: (show: boolean) => void;
 		onOcrColorChange: (color: string) => void;
+		onOcrFocusChange: (focus: string) => void;
+		onOcrFontSizeChange: (fontSize: string) => void;
 		onSuspectedFraudChange: (flagged: boolean) => void;
 	};
 
@@ -22,10 +26,14 @@
 		showAnomalies = true,
 		showOcr = true,
 		ocrColor = 'blue',
+		ocrFocus = 'medium',
+		ocrFontSize = 'medium',
 		suspectedFraud = false,
 		onToggleAnomalies,
 		onToggleOcr,
 		onOcrColorChange,
+		onOcrFocusChange,
+		onOcrFontSizeChange,
 		onSuspectedFraudChange
 	}: Props = $props();
 
@@ -101,7 +109,7 @@
 
 <div class="flex h-full flex-col">
 	<div class="min-h-0 flex-1 overflow-auto bg-transparent">
-		<div class="flex min-w-full items-center justify-center p-8">
+		<div class="flex w-fit min-w-full min-h-full items-center justify-center p-2">
 			<div
 				class="relative {suspectedFraud ? 'ring-4 ring-red-500 ring-offset-4' : ''}"
 				style="width: {image.width * scale}px; height: {image.height * scale}px;"
@@ -114,7 +122,7 @@
 				/>
 				{#if showOcr}
 					{#each document.ocrs as ocr, i (i)}
-						<OcrOverlay {ocr} {scale} color={ocrColor} />
+						<OcrOverlay {ocr} {scale} color={ocrColor} focus={ocrFocus} fontSize={ocrFontSize} />
 					{/each}
 				{/if}
 				{#if showAnomalies}
@@ -133,6 +141,8 @@
 			{showAnomalies}
 			{showOcr}
 			{ocrColor}
+			{ocrFocus}
+			{ocrFontSize}
 			{suspectedFraud}
 			onZoomIn={zoomIn}
 			onZoomOut={zoomOut}
@@ -140,6 +150,8 @@
 			{onToggleAnomalies}
 			{onToggleOcr}
 			{onOcrColorChange}
+			{onOcrFocusChange}
+			{onOcrFontSizeChange}
 			{onSuspectedFraudChange}
 		/>
 	</div>

@@ -19,6 +19,8 @@
 	const showAnomalies = $derived(isEnabled(searchParams.anomalies));
 	const showOcr = $derived(isEnabled(searchParams.ocr));
 	const ocrColor = $derived(searchParams.ocrColor);
+	const ocrFocus = $derived(searchParams.ocrFocus);
+	const ocrFontSize = $derived(searchParams.ocrFontSize);
 
 	let suspectedFraud = $state(false);
 
@@ -32,6 +34,14 @@
 
 	function handleOcrColorChange(color: string) {
 		searchParams.ocrColor = color as typeof searchParams.ocrColor;
+	}
+
+	function handleOcrFocusChange(focus: string) {
+		searchParams.ocrFocus = focus as typeof searchParams.ocrFocus;
+	}
+
+	function handleOcrFontSizeChange(fontSize: string) {
+		searchParams.ocrFontSize = fontSize as typeof searchParams.ocrFontSize;
 	}
 
 	function handleSuspectedFraudChange(flagged: boolean) {
@@ -50,16 +60,20 @@
 				Suspected Fraud
 			</span>
 		</PageHeader>
-		<div class="mt-2 flex h-[calc(100vh-6rem-1px)] flex-col">
+		<div class="flex h-[calc(100vh-5.5rem-1px)] flex-col">
 			<DocumentViewer
 				{document}
 				{showAnomalies}
 				{showOcr}
 				{ocrColor}
+				{ocrFocus}
+				{ocrFontSize}
 				{suspectedFraud}
 				onToggleAnomalies={handleToggleAnomalies}
 				onToggleOcr={handleToggleOcr}
 				onOcrColorChange={handleOcrColorChange}
+				onOcrFocusChange={handleOcrFocusChange}
+				onOcrFontSizeChange={handleOcrFontSizeChange}
 				onSuspectedFraudChange={handleSuspectedFraudChange}
 			/>
 		</div>

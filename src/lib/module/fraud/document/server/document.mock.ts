@@ -1,84 +1,100 @@
+// A4 at 150 DPI: 1240 x 1754 pixels
 export const mockedDocuments = [
 	{
 		id: '550e8400-e29b-41d4-a716-446655440000',
-		name: 'RE-2024-0847 - Müller & Schmidt GmbH',
-		images: [{ url: '/invoice-mock.png', width: 800, height: 1100 }],
+		name: 'RE-2024-0847 - Demoklinik Halle (Saale)',
+		images: [{ url: '/invoice-mock.png', width: 1240, height: 1754 }],
 		ocrs: [
 			// Header
-			{ text: 'RECHNUNG', rect: { x: 50, y: 50, width: 180, height: 35 } },
-			{ text: 'Müller & Schmidt GmbH', rect: { x: 50, y: 100, width: 220, height: 22 } },
-			{ text: 'Hauptstraße 123', rect: { x: 50, y: 125, width: 150, height: 18 } },
-			{ text: '10115 Berlin, Deutschland', rect: { x: 50, y: 148, width: 200, height: 18 } },
+			{ text: 'RECHNUNG', rect: { x: 78, y: 80, width: 279, height: 56 } },
+			{ text: 'Demoklinik Halle (Saale)', rect: { x: 78, y: 160, width: 380, height: 35 } },
+			{ text: 'Rehabilitationszentrum', rect: { x: 78, y: 199, width: 280, height: 29 } },
+			{ text: 'Magdeburger Straße 42', rect: { x: 78, y: 232, width: 280, height: 29 } },
+			{ text: '06112 Halle (Saale)', rect: { x: 78, y: 265, width: 250, height: 29 } },
 			// Invoice details
-			{ text: 'Rechnungsnr.: RE-2024-0847', rect: { x: 550, y: 100, width: 200, height: 20 } },
-			{ text: 'Datum: 15.01.2024', rect: { x: 550, y: 125, width: 150, height: 20 } },
-			{ text: 'Fällig: 15.02.2024', rect: { x: 550, y: 150, width: 150, height: 20 } },
-			// Rechnungsempfänger
-			{ text: 'Rechnungsempfänger:', rect: { x: 50, y: 220, width: 170, height: 18 } },
-			{ text: 'Schneider Industries GmbH', rect: { x: 50, y: 245, width: 220, height: 22 } },
-			{ text: 'Industrieweg 456', rect: { x: 50, y: 270, width: 150, height: 18 } },
-			{ text: '80331 München, Deutschland', rect: { x: 50, y: 293, width: 210, height: 18 } },
+			{ text: 'Rechnungsnr.: RE-2024-0847', rect: { x: 853, y: 160, width: 310, height: 32 } },
+			{ text: 'Datum: 15.01.2024', rect: { x: 853, y: 199, width: 233, height: 32 } },
+			{ text: 'IK: 261100842', rect: { x: 853, y: 239, width: 180, height: 32 } },
+			// Patient info
+			{ text: 'Patient:', rect: { x: 78, y: 351, width: 100, height: 29 } },
+			{ text: 'Max Mustermann', rect: { x: 78, y: 384, width: 220, height: 35 } },
+			{ text: 'geb. 12.05.1962', rect: { x: 78, y: 420, width: 200, height: 29 } },
+			{ text: 'Vers.-Nr.: A123456789', rect: { x: 78, y: 453, width: 280, height: 29 } },
+			// Kostenträger
+			{ text: 'Kostenträger:', rect: { x: 620, y: 351, width: 180, height: 29 } },
+			{ text: 'AOK Sachsen-Anhalt', rect: { x: 620, y: 384, width: 280, height: 35 } },
+			{ text: 'IK: 101097008', rect: { x: 620, y: 420, width: 180, height: 29 } },
+			// Behandlungszeitraum
+			{ text: 'Behandlungszeitraum: 04.12.2023 - 08.01.2024', rect: { x: 78, y: 510, width: 520, height: 32 } },
 			// Table header
-			{ text: 'Beschreibung', rect: { x: 50, y: 360, width: 120, height: 20 } },
-			{ text: 'Menge', rect: { x: 400, y: 360, width: 60, height: 20 } },
-			{ text: 'Einzelpreis', rect: { x: 520, y: 360, width: 100, height: 20 } },
-			{ text: 'Betrag', rect: { x: 680, y: 360, width: 70, height: 20 } },
-			// Line items
-			{ text: 'Beratungsleistungen - Q4 2023', rect: { x: 50, y: 400, width: 240, height: 20 } },
-			{ text: '40 Std.', rect: { x: 400, y: 400, width: 60, height: 20 } },
-			{ text: '150,00 €', rect: { x: 520, y: 400, width: 80, height: 20 } },
-			{ text: '6.000,00 €', rect: { x: 660, y: 400, width: 95, height: 20 } },
-			{ text: 'Softwarelizenz - Jahreslizenz', rect: { x: 50, y: 435, width: 230, height: 20 } },
-			{ text: '1', rect: { x: 400, y: 435, width: 20, height: 20 } },
-			{ text: '2.500,00 €', rect: { x: 520, y: 435, width: 95, height: 20 } },
-			{ text: '2.500,00 €', rect: { x: 660, y: 435, width: 95, height: 20 } },
-			{ text: 'Technischer Support - Premium', rect: { x: 50, y: 470, width: 250, height: 20 } },
-			{ text: '12 Mon.', rect: { x: 400, y: 470, width: 65, height: 20 } },
-			{ text: '89,00 €', rect: { x: 520, y: 470, width: 70, height: 20 } },
-			{ text: '1.068,00 €', rect: { x: 660, y: 470, width: 95, height: 20 } },
+			{ text: 'Leistung', rect: { x: 78, y: 574, width: 120, height: 32 } },
+			{ text: 'Anzahl', rect: { x: 620, y: 574, width: 93, height: 32 } },
+			{ text: 'Einzelpreis', rect: { x: 806, y: 574, width: 155, height: 32 } },
+			{ text: 'Betrag', rect: { x: 1054, y: 574, width: 109, height: 32 } },
+			// Line items - Reha treatments
+			{ text: 'Physiotherapie (KG)', rect: { x: 78, y: 638, width: 280, height: 32 } },
+			{ text: '24', rect: { x: 620, y: 638, width: 50, height: 32 } },
+			{ text: '28,50 €', rect: { x: 806, y: 638, width: 124, height: 32 } },
+			{ text: '684,00 €', rect: { x: 1023, y: 638, width: 147, height: 32 } },
+			{ text: 'Ergotherapie', rect: { x: 78, y: 694, width: 200, height: 32 } },
+			{ text: '18', rect: { x: 620, y: 694, width: 50, height: 32 } },
+			{ text: '42,00 €', rect: { x: 806, y: 694, width: 124, height: 32 } },
+			{ text: '756,00 €', rect: { x: 1023, y: 694, width: 147, height: 32 } },
+			{ text: 'Logopädie', rect: { x: 78, y: 750, width: 160, height: 32 } },
+			{ text: '12', rect: { x: 620, y: 750, width: 50, height: 32 } },
+			{ text: '52,80 €', rect: { x: 806, y: 750, width: 124, height: 32 } },
+			{ text: '633,60 €', rect: { x: 1023, y: 750, width: 147, height: 32 } },
+			{ text: 'Unterkunft & Verpflegung (35 Tage)', rect: { x: 78, y: 806, width: 420, height: 32 } },
+			{ text: '35', rect: { x: 620, y: 806, width: 50, height: 32 } },
+			{ text: '185,00 €', rect: { x: 806, y: 806, width: 124, height: 32 } },
+			{ text: '6.475,00 €', rect: { x: 1023, y: 806, width: 147, height: 32 } },
 			// Totals
-			{ text: 'Zwischensumme:', rect: { x: 520, y: 540, width: 130, height: 20 } },
-			{ text: '9.568,00 €', rect: { x: 660, y: 540, width: 95, height: 20 } },
-			{ text: 'MwSt. (19%):', rect: { x: 520, y: 570, width: 110, height: 20 } },
-			{ text: '1.817,92 €', rect: { x: 660, y: 570, width: 95, height: 20 } },
-			{ text: 'Gesamtbetrag:', rect: { x: 520, y: 610, width: 120, height: 24 } },
-			{ text: '11.385,92 €', rect: { x: 650, y: 610, width: 105, height: 24 } },
+			{ text: 'Zwischensumme:', rect: { x: 806, y: 890, width: 202, height: 32 } },
+			{ text: '8.548,60 €', rect: { x: 1023, y: 890, width: 147, height: 32 } },
+			{ text: 'Zuzahlung Patient:', rect: { x: 806, y: 930, width: 202, height: 32 } },
+			{ text: '- 280,00 €', rect: { x: 1023, y: 930, width: 147, height: 32 } },
+			{ text: 'Rechnungsbetrag:', rect: { x: 806, y: 990, width: 186, height: 38 } },
+			{ text: '8.268,60 €', rect: { x: 1008, y: 990, width: 163, height: 38 } },
 			// Bankverbindung
-			{ text: 'Bankverbindung:', rect: { x: 50, y: 750, width: 130, height: 18 } },
+			{ text: 'Bankverbindung:', rect: { x: 78, y: 1120, width: 202, height: 29 } },
+			{ text: 'Demobank Halle', rect: { x: 78, y: 1156, width: 200, height: 29 } },
 			{
-				text: 'IBAN: DE89 3704 0044 0532 0130 00',
-				rect: { x: 50, y: 780, width: 290, height: 18 }
+				text: 'IBAN: DE12 8765 4321 0987 6543 21',
+				rect: { x: 78, y: 1192, width: 420, height: 29 }
 			},
-			{ text: 'BIC: COBADEFFXXX', rect: { x: 50, y: 805, width: 170, height: 18 } },
+			{ text: 'BIC: DEMODEXXHAL', rect: { x: 78, y: 1228, width: 264, height: 29 } },
 			// Footer
-			{ text: 'Vielen Dank für Ihren Auftrag!', rect: { x: 280, y: 920, width: 240, height: 22 } }
+			{ text: 'Zahlungsziel: 30 Tage', rect: { x: 78, y: 1280, width: 280, height: 29 } },
+			{ text: 'Bei Rückfragen: abrechnung@demoklinik-halle.de', rect: { x: 78, y: 1320, width: 520, height: 29 } }
 		],
 		anomalies: [
 			{
 				id: 'anomaly-1',
 				type: 'manipulierter_betrag',
-				rect: { x: 640, y: 600, width: 120, height: 40 },
+				rect: { x: 992, y: 974, width: 186, height: 64 },
 				details:
-					'Der Gesamtbetrag weist Pixelartefakte auf, die auf eine nachträgliche Bearbeitung hindeuten. Die Ziffern stimmen nicht mit dem Schriftbild der restlichen Beträge überein.'
+					'Der Rechnungsbetrag weist Pixelartefakte auf, die auf eine nachträgliche Bearbeitung hindeuten. Die Ziffern stimmen nicht mit dem Schriftbild der restlichen Beträge überein.'
 			},
 			{
 				id: 'anomaly-2',
 				type: 'verdächtige_iban',
-				rect: { x: 40, y: 770, width: 310, height: 35 },
+				rect: { x: 62, y: 1180, width: 440, height: 80 },
 				details:
-					'Die IBAN ist keinem bekannten Geschäftskonto der Müller & Schmidt GmbH zugeordnet. Abweichung von der registrierten Bankverbindung im Handelsregister.'
+					'Die IBAN weicht von der im Institutionskennzeichen (IK) registrierten Bankverbindung der Demoklinik ab.'
 			},
 			{
 				id: 'anomaly-3',
-				type: 'schriftart_abweichung',
-				rect: { x: 650, y: 425, width: 110, height: 30 }
+				type: 'überhöhte_leistungsmenge',
+				rect: { x: 600, y: 790, width: 90, height: 48 },
+				details:
+					'35 Tage Unterkunft bei einem Behandlungszeitraum von 36 Tagen ist ungewöhnlich hoch. Prüfung der tatsächlichen Aufenthaltsdauer empfohlen.'
 			},
 			{
 				id: 'anomaly-4',
-				type: 'datum_manipulation',
-				rect: { x: 540, y: 115, width: 170, height: 30 },
+				type: 'ik_abweichung',
+				rect: { x: 837, y: 223, width: 200, height: 48 },
 				details:
-					'Das Rechnungsdatum wurde nachträglich geändert. Metadaten zeigen ursprüngliches Datum: 03.12.2023.'
+					'Das Institutionskennzeichen (IK) stimmt nicht mit dem im Kostenträgerverzeichnis hinterlegten IK der Demoklinik Halle überein.'
 			}
 		]
 	}

@@ -10,6 +10,8 @@
 		showAnomalies: boolean;
 		showOcr: boolean;
 		ocrColor: string;
+		ocrFocus: string;
+		ocrFontSize: string;
 		suspectedFraud: boolean;
 		onZoomIn: () => void;
 		onZoomOut: () => void;
@@ -17,6 +19,8 @@
 		onToggleAnomalies: (show: boolean) => void;
 		onToggleOcr: (show: boolean) => void;
 		onOcrColorChange: (color: string) => void;
+		onOcrFocusChange: (focus: string) => void;
+		onOcrFontSizeChange: (fontSize: string) => void;
 		onSuspectedFraudChange: (flagged: boolean) => void;
 	};
 
@@ -25,6 +29,8 @@
 		showAnomalies,
 		showOcr,
 		ocrColor,
+		ocrFocus,
+		ocrFontSize,
 		suspectedFraud,
 		onZoomIn,
 		onZoomOut,
@@ -32,6 +38,8 @@
 		onToggleAnomalies,
 		onToggleOcr,
 		onOcrColorChange,
+		onOcrFocusChange,
+		onOcrFontSizeChange,
 		onSuspectedFraudChange
 	}: Props = $props();
 
@@ -61,7 +69,14 @@
 		/>
 		<Popover.Portal>
 			<Popover.Content side="top" align="center" sideOffset={12} class="z-50">
-				<ColorPicker value={ocrColor} onValueChange={onOcrColorChange} />
+				<ColorPicker
+					color={ocrColor}
+					focus={ocrFocus}
+					fontSize={ocrFontSize}
+					onColorChange={onOcrColorChange}
+					onFocusChange={onOcrFocusChange}
+					onFontSizeChange={onOcrFontSizeChange}
+				/>
 			</Popover.Content>
 		</Popover.Portal>
 	</Popover.Root>
