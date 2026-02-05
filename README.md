@@ -128,3 +128,12 @@ For planning, I partially used a **custom agent built on the ChatGPT API**. The 
 pnpm install
 pnpm dev
 ```
+
+## License
+
+This demo is licensed under the **PolyForm Small Business 1.0.0** license.
+
+- ✅ Free for small businesses (<100 people, <$1M revenue)
+- ❌ Larger organizations require a commercial license
+
+See `COMMERCIAL-LICENSE.md` for details.
