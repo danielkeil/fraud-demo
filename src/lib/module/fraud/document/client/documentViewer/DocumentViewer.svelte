@@ -2,7 +2,7 @@
 	import type { Document } from '$lib/module/fraud/document';
 	import AnomalyOverlay from './AnomalyOverlay.svelte';
 	import OcrOverlay from './OcrOverlay.svelte';
-	import DocumentViewerToolbar from './DocumentViewerToolbar.svelte';
+	import DocumentViewerToolbar from './toolbar/DocumentViewerToolbar.svelte';
 	import ShortcutsButton from './ShortcutsButton.svelte';
 
 	type Props = {
@@ -109,7 +109,7 @@
 
 <div class="flex h-full flex-col">
 	<div class="min-h-0 flex-1 overflow-auto bg-transparent">
-		<div class="flex w-fit min-w-full min-h-full items-center justify-center p-2">
+		<div class="flex min-h-full w-fit min-w-full items-center justify-center p-2">
 			<div
 				class="relative {suspectedFraud ? 'ring-4 ring-red-500 ring-offset-4' : ''}"
 				style="width: {image.width * scale}px; height: {image.height * scale}px;"

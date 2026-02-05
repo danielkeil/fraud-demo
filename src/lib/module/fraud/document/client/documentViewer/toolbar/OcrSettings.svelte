@@ -1,4 +1,4 @@
-<script lang="ts" module>
+<script lang="ts" module xmlns="http://www.w3.org/1999/html">
 	export type OcrColor = {
 		key: string;
 		label: string;
@@ -8,14 +8,62 @@
 	};
 
 	export const ocrColors: OcrColor[] = [
-		{ key: 'blue', label: 'Blau', border: 'border-blue-600', text: 'text-blue-700', swatch: 'bg-blue-500' },
-		{ key: 'purple', label: 'Violett', border: 'border-purple-600', text: 'text-purple-700', swatch: 'bg-purple-500' },
-		{ key: 'cyan', label: 'Türkis', border: 'border-cyan-600', text: 'text-cyan-700', swatch: 'bg-cyan-500' },
-		{ key: 'amber', label: 'Bernstein', border: 'border-amber-500', text: 'text-amber-700', swatch: 'bg-amber-500' },
-		{ key: 'yellow', label: 'Gelb', border: 'border-yellow-500', text: 'text-yellow-700', swatch: 'bg-yellow-400' },
-		{ key: 'black', label: 'Schwarz', border: 'border-zinc-800', text: 'text-zinc-900', swatch: 'bg-zinc-700' },
-		{ key: 'gray', label: 'Grau', border: 'border-zinc-400', text: 'text-zinc-600', swatch: 'bg-zinc-400' },
-		{ key: 'white', label: 'Weiß', border: 'border-zinc-300', text: 'text-zinc-700', swatch: 'bg-white ring-1 ring-zinc-300' }
+		{
+			key: 'blue',
+			label: 'Blau',
+			border: 'border-blue-600',
+			text: 'text-blue-700',
+			swatch: 'bg-blue-500'
+		},
+		{
+			key: 'purple',
+			label: 'Violett',
+			border: 'border-purple-600',
+			text: 'text-purple-700',
+			swatch: 'bg-purple-500'
+		},
+		{
+			key: 'cyan',
+			label: 'Türkis',
+			border: 'border-cyan-600',
+			text: 'text-cyan-700',
+			swatch: 'bg-cyan-500'
+		},
+		{
+			key: 'amber',
+			label: 'Bernstein',
+			border: 'border-amber-500',
+			text: 'text-amber-700',
+			swatch: 'bg-amber-500'
+		},
+		{
+			key: 'yellow',
+			label: 'Gelb',
+			border: 'border-yellow-500',
+			text: 'text-yellow-700',
+			swatch: 'bg-yellow-400'
+		},
+		{
+			key: 'black',
+			label: 'Schwarz',
+			border: 'border-zinc-800',
+			text: 'text-zinc-900',
+			swatch: 'bg-zinc-700'
+		},
+		{
+			key: 'gray',
+			label: 'Grau',
+			border: 'border-zinc-400',
+			text: 'text-zinc-600',
+			swatch: 'bg-zinc-400'
+		},
+		{
+			key: 'white',
+			label: 'Weiß',
+			border: 'border-zinc-300',
+			text: 'text-zinc-700',
+			swatch: 'bg-white ring-1 ring-zinc-300'
+		}
 	];
 
 	export const ocrFocusOptions = [
@@ -55,6 +103,11 @@
 		selected?.focus();
 	}
 
+	// we moved the handler into <script lang="ts"> for proper typing (value can be null).
+	const handleColorChange = (value: string | null) => value && onColorChange(value);
+	const handleFocusChange = (value: string | null) => value && onFocusChange(value);
+	const handleSizeChange = (value: string | null) => value && onFontSizeChange(value);
+
 	$effect(() => {
 		focusSelected();
 	});
@@ -73,12 +126,12 @@
 
 	<!-- Farbe -->
 	<div class="mb-4">
-		<label class="mb-2 block text-xs font-medium text-zinc-500">Farbe</label>
-		<Toolbar.Root>
+		<span id="color-label" class="mb-2 block text-xs font-medium text-zinc-500">Farbe</span>
+		<Toolbar.Root aria-labelledby="color-label">
 			<Toolbar.Group
 				type="single"
 				value={color}
-				onValueChange={(v: string) => v && onColorChange(v)}
+				onValueChange={handleColorChange}
 				class="flex flex-wrap gap-2"
 			>
 				{#each ocrColors as c (c.key)}
@@ -94,18 +147,20 @@
 
 	<!-- Hintergrund-Unschärfe -->
 	<div class="mb-4">
-		<label class="mb-2 block text-xs font-medium text-zinc-500">Hintergrund-Unschärfe</label>
-		<Toolbar.Root>
+		<span id="focus-label" class="mb-2 block text-xs font-medium text-zinc-500"
+			>Hintergrund-Unschärfe</span
+		>
+		<Toolbar.Root aria-labelledby="focus-label">
 			<Toolbar.Group
 				type="single"
 				value={focus}
-				onValueChange={(v: string) => v && onFocusChange(v)}
+				onValueChange={handleFocusChange}
 				class="flex gap-1"
 			>
 				{#each ocrFocusOptions as f (f.key)}
 					<Toolbar.GroupItem
 						value={f.key}
-						class="rounded-md px-3 py-1.5 text-xs font-medium text-zinc-600 outline-none transition-colors hover:bg-zinc-100 focus:ring-2 focus:ring-yellow-400 data-[state=on]:bg-zinc-900 data-[state=on]:text-white"
+						class="rounded-md px-3 py-1.5 text-xs font-medium text-zinc-600 transition-colors outline-none hover:bg-zinc-100 focus:ring-2 focus:ring-yellow-400 data-[state=on]:bg-zinc-900 data-[state=on]:text-white"
 					>
 						{f.label}
 					</Toolbar.GroupItem>
@@ -116,18 +171,20 @@
 
 	<!-- Schriftgröße -->
 	<div>
-		<label class="mb-2 block text-xs font-medium text-zinc-500">Schriftgröße</label>
-		<Toolbar.Root>
+		<span id="fontsize-label" class="mb-2 block text-xs font-medium text-zinc-500"
+			>Schriftgröße</span
+		>
+		<Toolbar.Root aria-labelledby="fontsize-label">
 			<Toolbar.Group
 				type="single"
 				value={fontSize}
-				onValueChange={(v: string) => v && onFontSizeChange(v)}
+				onValueChange={handleSizeChange}
 				class="flex gap-1"
 			>
 				{#each ocrFontSizes as f (f.key)}
 					<Toolbar.GroupItem
 						value={f.key}
-						class="rounded-md px-3 py-1.5 text-xs font-medium text-zinc-600 outline-none transition-colors hover:bg-zinc-100 focus:ring-2 focus:ring-yellow-400 data-[state=on]:bg-zinc-900 data-[state=on]:text-white"
+						class="rounded-md px-3 py-1.5 text-xs font-medium text-zinc-600 transition-colors outline-none hover:bg-zinc-100 focus:ring-2 focus:ring-yellow-400 data-[state=on]:bg-zinc-900 data-[state=on]:text-white"
 					>
 						{f.label}
 					</Toolbar.GroupItem>

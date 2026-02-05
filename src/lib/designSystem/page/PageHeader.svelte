@@ -10,7 +10,7 @@
 	let { title, description, children }: Props = $props();
 </script>
 
-<div class="pt-5 pb-4 border-b border-b-zinc-200">
+<div class="border-b border-b-zinc-200 pt-5 pb-4">
 	<div class="sm:flex sm:items-center">
 		<div class="sm:flex-auto">
 			<h1 class="text-lg font-semibold text-zinc-900">{title}</h1>

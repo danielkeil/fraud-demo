@@ -25,7 +25,10 @@ export const mockedDocuments = [
 			{ text: 'AOK Sachsen-Anhalt', rect: { x: 620, y: 384, width: 280, height: 35 } },
 			{ text: 'IK: 101097008', rect: { x: 620, y: 420, width: 180, height: 29 } },
 			// Behandlungszeitraum
-			{ text: 'Behandlungszeitraum: 04.12.2023 - 08.01.2024', rect: { x: 78, y: 510, width: 520, height: 32 } },
+			{
+				text: 'Behandlungszeitraum: 04.12.2023 - 08.01.2024',
+				rect: { x: 78, y: 510, width: 520, height: 32 }
+			},
 			// Table header
 			{ text: 'Leistung', rect: { x: 78, y: 574, width: 120, height: 32 } },
 			{ text: 'Anzahl', rect: { x: 620, y: 574, width: 93, height: 32 } },
@@ -44,7 +47,10 @@ export const mockedDocuments = [
 			{ text: '12', rect: { x: 620, y: 750, width: 50, height: 32 } },
 			{ text: '52,80 €', rect: { x: 806, y: 750, width: 124, height: 32 } },
 			{ text: '633,60 €', rect: { x: 1023, y: 750, width: 147, height: 32 } },
-			{ text: 'Unterkunft & Verpflegung (35 Tage)', rect: { x: 78, y: 806, width: 420, height: 32 } },
+			{
+				text: 'Unterkunft & Verpflegung (35 Tage)',
+				rect: { x: 78, y: 806, width: 420, height: 32 }
+			},
 			{ text: '35', rect: { x: 620, y: 806, width: 50, height: 32 } },
 			{ text: '185,00 €', rect: { x: 806, y: 806, width: 124, height: 32 } },
 			{ text: '6.475,00 €', rect: { x: 1023, y: 806, width: 147, height: 32 } },
@@ -65,7 +71,10 @@ export const mockedDocuments = [
 			{ text: 'BIC: DEMODEXXHAL', rect: { x: 78, y: 1228, width: 264, height: 29 } },
 			// Footer
 			{ text: 'Zahlungsziel: 30 Tage', rect: { x: 78, y: 1280, width: 280, height: 29 } },
-			{ text: 'Bei Rückfragen: abrechnung@demoklinik-halle.de', rect: { x: 78, y: 1320, width: 520, height: 29 } }
+			{
+				text: 'Bei Rückfragen: abrechnung@demoklinik-halle.de',
+				rect: { x: 78, y: 1320, width: 520, height: 29 }
+			}
 		],
 		anomalies: [
 			{

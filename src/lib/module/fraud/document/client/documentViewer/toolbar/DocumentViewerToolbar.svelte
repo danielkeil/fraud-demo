@@ -1,95 +1,95 @@
 <script lang="ts">
-    import {Popover} from 'bits-ui';
-    import Button from '$lib/designSystem/primitives/Button.svelte';
-    import Toggle from '$lib/designSystem/primitives/Toggle.svelte';
-    import SuspectedFraudButton from './SuspectedFraudButton.svelte';
+	import { Popover } from 'bits-ui';
+	import Button from '$lib/designSystem/primitives/Button.svelte';
+	import Toggle from '$lib/designSystem/primitives/Toggle.svelte';
+	import SuspectedFraudButton from './SuspectedFraudButton.svelte';
 
-    import {ocrColors, type OcrColor} from './ocrSetting/OcrSettings.svelte';
-    import OcrSettings from './ocrSetting/OcrSettings.svelte';
+	import { ocrColors, type OcrColor } from './OcrSettings.svelte';
+	import OcrSettings from './OcrSettings.svelte';
 
-    type Props = {
-        scale: number;
-        showAnomalies: boolean;
-        showOcr: boolean;
-        ocrColor: string;
-        ocrFocus: string;
-        ocrFontSize: string;
-        suspectedFraud: boolean;
-        onZoomIn: () => void;
-        onZoomOut: () => void;
-        onReset: () => void;
-        onToggleAnomalies: (show: boolean) => void;
-        onToggleOcr: (show: boolean) => void;
-        onOcrColorChange: (color: string) => void;
-        onOcrFocusChange: (focus: string) => void;
-        onOcrFontSizeChange: (fontSize: string) => void;
-        onSuspectedFraudChange: (flagged: boolean) => void;
-    };
+	type Props = {
+		scale: number;
+		showAnomalies: boolean;
+		showOcr: boolean;
+		ocrColor: string;
+		ocrFocus: string;
+		ocrFontSize: string;
+		suspectedFraud: boolean;
+		onZoomIn: () => void;
+		onZoomOut: () => void;
+		onReset: () => void;
+		onToggleAnomalies: (show: boolean) => void;
+		onToggleOcr: (show: boolean) => void;
+		onOcrColorChange: (color: string) => void;
+		onOcrFocusChange: (focus: string) => void;
+		onOcrFontSizeChange: (fontSize: string) => void;
+		onSuspectedFraudChange: (flagged: boolean) => void;
+	};
 
-    let {
-        scale,
-        showAnomalies,
-        showOcr,
-        ocrColor,
-        ocrFocus,
-        ocrFontSize,
-        suspectedFraud,
-        onZoomIn,
-        onZoomOut,
-        onReset,
-        onToggleAnomalies,
-        onToggleOcr,
-        onOcrColorChange,
-        onOcrFocusChange,
-        onOcrFontSizeChange,
-        onSuspectedFraudChange
-    }: Props = $props();
+	let {
+		scale,
+		showAnomalies,
+		showOcr,
+		ocrColor,
+		ocrFocus,
+		ocrFontSize,
+		suspectedFraud,
+		onZoomIn,
+		onZoomOut,
+		onReset,
+		onToggleAnomalies,
+		onToggleOcr,
+		onOcrColorChange,
+		onOcrFocusChange,
+		onOcrFontSizeChange,
+		onSuspectedFraudChange
+	}: Props = $props();
 
-    const scalePercent = $derived(Math.round(scale * 100));
-    const currentColor = $derived(
-        ocrColors.find((c: OcrColor) => c.key === ocrColor) ?? ocrColors[0]
-    );
+	const scalePercent = $derived(Math.round(scale * 100));
+	const currentColor = $derived(
+		ocrColors.find((c: OcrColor) => c.key === ocrColor) ?? ocrColors[0]
+	);
 </script>
 
 {#snippet separator()}
-    <div class="h-6 w-px bg-zinc-200"></div>
+	<div class="h-6 w-px bg-zinc-200"></div>
 {/snippet}
 
 <div class="flex items-center gap-3 rounded-lg border border-zinc-200 bg-white p-1 pl-4">
-    <Toggle label="Anomalien" checked={showAnomalies} onCheckedChange={onToggleAnomalies}/>
+	<Toggle label="Anomalien" checked={showAnomalies} onCheckedChange={onToggleAnomalies} />
 
-    {@render separator()}
+	{@render separator()}
 
-    <Toggle label="OCR" checked={showOcr} onCheckedChange={onToggleOcr}/>
+	<Toggle label="OCR" checked={showOcr} onCheckedChange={onToggleOcr} />
 
-    {@render separator()}
+	{@render separator()}
 
-    <Popover.Root>
-        <Popover.Trigger
-                class="size-6 rounded-full {currentColor.swatch} ring-offset-2 transition-transform outline-none hover:scale-110 focus:ring-2 focus:ring-yellow-400"
-                aria-label="OCR-Farbe ändern"
-        />
-        <Popover.Portal>
-            <Popover.Content side="top" align="center" sideOffset={12} class="z-50">
-                <OcrSettings
-                        color={ocrColor}
-                        focus={ocrFocus}
-                        fontSize={ocrFontSize}
-                        onColorChange={onOcrColorChange}
-                        onFocusChange={onOcrFocusChange}
-                        onFontSizeChange={onOcrFontSizeChange}
-                />
-            </Popover.Content>
-        </Popover.Portal>
-    </Popover.Root>
+	<Popover.Root>
+		<Popover.Trigger
+			class="size-6 rounded-full {currentColor.swatch} ring-offset-2 transition-transform outline-none hover:scale-110 focus:ring-2 focus:ring-yellow-400"
+			aria-label="OCR-Farbe ändern"
+		/>
+		<Popover.Portal>
+			<Popover.Content side="top" align="center" sideOffset={12} class="z-50">
+				<OcrSettings
+					color={ocrColor}
+					focus={ocrFocus}
+					fontSize={ocrFontSize}
+					onColorChange={onOcrColorChange}
+					onFocusChange={onOcrFocusChange}
+					onFontSizeChange={onOcrFontSizeChange}
+				/>
+			</Popover.Content>
+		</Popover.Portal>
+	</Popover.Root>
 
-    {@render separator()}
+	{@render separator()}
 
-    <Button variant="plain" onclick={onZoomOut}>-</Button>
-    <Button variant="plain" class="w-12" onclick={onReset}>{scalePercent}%</Button>
-    <Button variant="plain" onclick={onZoomIn}>+</Button>
+	<Button variant="plain" onclick={onZoomOut}>-</Button>
+	<Button variant="plain" class="w-12" onclick={onReset}>{scalePercent}%</Button>
+	<Button variant="plain" onclick={onZoomIn}>+</Button>
 
-    {@render separator()}
+	{@render separator()}
 
-    <SuspectedFraudButton isFlagged={suspectedFraud} onToggle={onSuspectedFraudChange}/>
+	<SuspectedFraudButton isFlagged={suspectedFraud} onToggle={onSuspectedFraudChange} />
 </div>

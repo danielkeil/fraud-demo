@@ -1,7 +1,12 @@
 <script lang="ts">
 	import type { Ocr } from '$lib/module/fraud/document';
 	import { uniformScaleStrategy } from './uniformScale';
-	import { ocrColors, ocrFocusOptions, ocrFontSizes, type OcrColor } from '$lib/designSystem/colorPicker';
+	import {
+		ocrColors,
+		ocrFocusOptions,
+		ocrFontSizes,
+		type OcrColor
+	} from './toolbar/OcrSettings.svelte';
 
 	type Props = {
 		ocr: Ocr;

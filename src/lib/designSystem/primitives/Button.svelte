@@ -56,9 +56,7 @@
 		]
 	};
 
-	const classes = $derived(
-		[...baseStyles, ...variantStyles[variant], className]
-	);
+	const classes = $derived([...baseStyles, ...variantStyles[variant], className]);
 </script>
 
 <button {type} class={classes} {disabled} {onclick} {...props}>
