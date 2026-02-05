@@ -3,7 +3,7 @@
 
 	let { children } = $props();
 
-	import { SidebarLayout } from '$lib/appShell';
+	import { SidebarLayout, MobileWarning } from '$lib/appShell';
 	import AppSidebar from '$lib/appShell/AppSidebar.svelte';
 
 	import { Navbar, NavbarSpacer } from '$lib/appShell/navbar';
@@ -12,6 +12,8 @@
 <svelte:head>
 	<link rel="icon" href="/favicon.ico" />
 </svelte:head>
+
+<MobileWarning />
 
 <SidebarLayout noPadding>
 	{#snippet navbar()}
