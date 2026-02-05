@@ -14,14 +14,14 @@ The application lets users review documents for fraud. A mocked API returns OCR 
 
 ## What We Used
 
-| Category | Technology |
-|----------|------------|
-| Framework | [SvelteKit](https://svelte.dev/docs/kit) + [Svelte 5](https://svelte.dev/) |
-| Styling | [Tailwind CSS v4](https://tailwindcss.com/) |
-| Components | [Bits UI](https://bits-ui.com/) |
-| Validation | [Valibot](https://valibot.dev/) |
-| Utilities | [Runed](https://runed.dev/) |
-| Icons | [Lucide Svelte](https://lucide.dev/) |
+| Category      | Technology                                                                               |
+| ------------- | ---------------------------------------------------------------------------------------- |
+| Framework     | [SvelteKit](https://svelte.dev/docs/kit) + [Svelte 5](https://svelte.dev/)               |
+| Styling       | [Tailwind CSS v4](https://tailwindcss.com/)                                              |
+| Components    | [Bits UI](https://bits-ui.com/)                                                          |
+| Validation    | [Valibot](https://valibot.dev/)                                                          |
+| Utilities     | [Runed](https://runed.dev/)                                                              |
+| Icons         | [Lucide Svelte](https://lucide.dev/)                                                     |
 | Data Fetching | Svelte's [remote functions](https://svelte.dev/docs/kit/load#Remote-functions) (`query`) |
 
 Special thanks to **Bits UI** for making accessible components straightforward to build.
@@ -39,7 +39,6 @@ src/lib/
 ├── designSystem/      # Reusable UI building blocks
 │   ├── primitives/    # Button, Toggle, etc.
 │   ├── page/          # Page layout components
-│   └── colorPicker/   # Specialized components
 │
 ├── appShell/          # Application structure
 │   ├── layout/        # Layout wrappers
@@ -50,8 +49,8 @@ src/lib/
     └── fraud/
         └── document/
             ├── client/   # UI components
-            ├── server/   # Data fetching, API
-            └── domain/   # Schemas, types, business logic
+            ├── server/   # Data fetching, API, remode functions
+            └── domain/   # Schemas, types
 ```
 
 **Design System** — Contains only reusable UI components with no knowledge of features. These can be extracted to a separate package if needed.
@@ -59,24 +58,36 @@ src/lib/
 **App Shell** — Defines the application's layout and navigation structure. It can use the design system and import from feature modules.
 
 **Feature Modules** — Each feature is self-contained with three layers:
+
 - `client/` — UI components specific to this feature
 - `server/` — Server-side logic and data fetching
-- `domain/` — Schemas, types, and business rules
+- `domain/` — Schemas for models and use-cases, types, and business rules
+
+#### Responsibilities by layer
+
+- **`client/` (UI layer)**  
+  UI components for this feature only. It calls **only** the feature’s `server/` endpoints (no direct calls to external APIs).
+
+- **`server/` (BFF layer — Backend for Frontend)**  
+  Acts as the feature’s backend boundary. It:
+  - calls downstream/internal/external APIs on behalf of the UI
+  - aggregates and normalizes data into UI-friendly shapes
+  - enforces authentication/authorization and keeps secrets out of the browser
+  - uses **HTTP-only cookies** for user sessions and translates them into an internal **JWT (JSON Web Token)** when calling downstream APIs
+
+- **`domain/` (shared contract + rules)**  
+  The common source of truth used by both `client/` and `server/`:
+  - types and schemas (validation/serialization)
+  - use-cases and business rules (where applicable)
+  - shared model definitions to keep client and server aligned and avoid duplication
 
 This separation keeps feature code isolated. Multiple people can work on different features without stepping on each other.
 
+For more details, see the full architecture guide:
+
+> **[Frontend Architecture Overview](./doc/ai/architecture.md)**
+
 ### Key Patterns
-
-**URL State with Schema Validation**
-
-Viewer settings (OCR visibility, colors, zoom) are stored in URL search params using `useSearchParams` from Runed, validated with Valibot schemas. This makes the viewer state shareable and bookmarkable.
-
-```ts
-const searchParams = useSearchParams(searchParamsSchema, {
-  showDefaults: false,
-  noScroll: true
-});
-```
 
 **Remote Functions**
 
@@ -84,7 +95,18 @@ Data fetching uses Svelte's `query` function, which runs on the server and handl
 
 ```ts
 export const getDocument = query(v.string(), async (id) => {
-  // runs on server, result sent to client
+	// runs on server, result sent to client
+});
+```
+
+**URL State with Schema Validation**
+
+Viewer settings (OCR visibility, colors, zoom) are stored in URL search params using `useSearchParams` from Runed, validated with Valibot schemas. This makes the viewer state shareable and bookmarkable.
+
+```ts
+const searchParams = useSearchParams(searchParamsSchema, {
+	showDefaults: false,
+	noScroll: true
 });
 ```
 
@@ -96,9 +118,9 @@ Accessibility was a priority throughout. Bits UI provides accessible primitives 
 
 This project was built with AI assistance—not as a moonshot experiment, but as a practical way to move faster. The architecture and structure are not AI-generated; they come from patterns I've used on previous projects.
 
-**[Claude Code](https://claude.ai/code)** (Opus 4.5) handled some of the coding. I added AI-specific documentation covering newer SvelteKit features like remote functions—this helps the model stay current with APIs that may have changed since its training cutoff. I also provided reference implementations and architectural guidance so the AI could follow established patterns rather than invent its own.
+**[Claude Code](https://claude.ai/code)** (Opus 4.5) handled some of the coding and the commit messages. I added AI-specific documentation covering newer SvelteKit features like remote functions—this helps the model stay current with APIs that may have changed since its training cutoff. I also provided reference implementations and architectural guidance so the AI could follow established patterns rather than invent its own.
 
-For planning, I used a **custom agent built on the ChatGPT API**. The workflow per task: refine the idea, build a base prompt, research outside of AI tools. Once the direction was clear, hand it off to Claude Code for implementation—followed by 2-3 rounds of refinement and a final cleanup pass. Around 30 tasks went through this workflow for the demo.
+For planning, I partially used a **custom agent built on the ChatGPT API**. The workflow for bigger ai tasks: refine the idea, build a base prompt, research. Once the direction was clear, hand it off to Claude Code with clear coding style instructions, examples and guideline and a bigger list what not todo, for implementation—followed by 2-3 rounds of refinement and a final cleanup pass. Around 15 tasks went through this workflow for the demo.
 
 ## Running Locally
 
@@ -106,4 +128,3 @@ For planning, I used a **custom agent built on the ChatGPT API**. The workflow p
 pnpm install
 pnpm dev
 ```
-
