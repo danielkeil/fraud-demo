@@ -89,13 +89,21 @@ For more details, see the full architecture guide:
 
 ### Key Patterns
 
+
+**Schema-first validation** 
+
+Validate all inbound and outbound data with schemas at boundaries (URL ↔ app, app ↔ API). Fail fast at 
+integration points rather than surfacing as delayed, hard-to-debug UI behavior
+
 **Remote Functions**
 
-Data fetching uses Svelte's `query` function, which runs on the server and handles serialization automatically.
+Data fetching uses Svelte's `query` function, which runs on the server and handles serialization automatically. Responses from external APIs are validated with schemas, which also infer the TypeScript ty
++pes.
 
 ```ts
 export const getDocument = query(v.string(), async (id) => {
 	// runs on server, result sent to client
+    // validate reponse with schema
 });
 ```
 
