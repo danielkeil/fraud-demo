@@ -4,8 +4,19 @@
 	import { browser } from '$app/environment';
 
 	// todo: handle to deprecated browser.platform ( out of scope for this demo )
-	const isMac = browser ? navigator.platform?.toUpperCase().includes('MAC') : false;
-	let platform = $state(isMac ? 'mac' : 'windows');
+	const isMac = browser ? (navigator.platform?.toUpperCase().includes('MAC') ?? false) : false;
+
+	let platform = $state<string>(isMac ? 'mac' : 'windows');
+
+	function getPlatform() {
+		return platform;
+	}
+
+	function setPlatform(value: string) {
+		if (value) {
+			platform = value;
+		}
+	}
 
 	const shortcuts = {
 		mac: {
@@ -34,7 +45,9 @@
 		}
 	};
 
-	const currentShortcuts = $derived(shortcuts[platform as keyof typeof shortcuts] ?? shortcuts.windows);
+	const currentShortcuts = $derived(
+		shortcuts[platform as keyof typeof shortcuts] ?? shortcuts.windows
+	);
 </script>
 
 {#snippet shortcutList(toggle: typeof shortcuts.mac.toggle, zoom: typeof shortcuts.mac.zoom)}
@@ -91,16 +104,16 @@
 	</div>
 
 	<Toolbar.Root class="mb-3 grid w-full grid-cols-2 gap-1 rounded-lg bg-zinc-100 p-1">
-		<Toolbar.Group type="single" bind:value={platform} class="contents">
+		<Toolbar.Group type="single" value={getPlatform()} onValueChange={setPlatform} class="contents">
 			<Toolbar.GroupItem
 				value="windows"
-				class="h-8 rounded-md text-sm font-medium text-zinc-600 transition-all outline-none focus:ring-2 focus:ring-yellow-400 data-[state=on]:bg-white data-[state=on]:text-zinc-900 data-[state=on]:shadow-sm"
+				class="flex h-8 w-full items-center justify-center rounded-md text-sm font-medium text-zinc-600 transition-all outline-none focus:ring-2 focus:ring-yellow-400 data-[state=on]:bg-white data-[state=on]:text-zinc-900 data-[state=on]:shadow-sm"
 			>
 				Windows / Linux
 			</Toolbar.GroupItem>
 			<Toolbar.GroupItem
 				value="mac"
-				class="h-8 rounded-md text-sm font-medium text-zinc-600 transition-all outline-none focus:ring-2 focus:ring-yellow-400 data-[state=on]:bg-white data-[state=on]:text-zinc-900 data-[state=on]:shadow-sm"
+				class="flex h-8 w-full items-center justify-center rounded-md text-sm font-medium text-zinc-600 transition-all outline-none focus:ring-2 focus:ring-yellow-400 data-[state=on]:bg-white data-[state=on]:text-zinc-900 data-[state=on]:shadow-sm"
 			>
 				Mac
 			</Toolbar.GroupItem>

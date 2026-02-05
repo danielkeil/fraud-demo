@@ -5,44 +5,39 @@
 	import DocumentViewerToolbar from './toolbar/DocumentViewerToolbar.svelte';
 	import ShortcutsButton from './ShortcutsButton.svelte';
 
+	import {
+		createZoomContext,
+		ZOOM,
+		useZoomContext,
+		type ZoomContext
+	} from './_context/zoomContext.svelte.js';
+	import { setContext } from 'svelte';
+	import { useDocViewerContext } from '$lib/module/fraud/document/client/documentViewer/_context/docViewerContext.svelte.js';
+
+	import { isEnabled } from '$lib/module/fraud/document/domain/viewerOptions.schema.js';
+	import { toBooleanSearchParam } from '$lib/module/_shared/utils';
+
 	type Props = {
 		document: Document;
-		showAnomalies: boolean;
-		showOcr: boolean;
-		ocrColor: string;
-		ocrFocus: string;
-		ocrFontSize: string;
-		suspectedFraud: boolean; // in a real world scenario this would part of the document
-		onToggleAnomalies: (show: boolean) => void;
-		onToggleOcr: (show: boolean) => void;
-		onOcrColorChange: (color: string) => void;
-		onOcrFocusChange: (focus: string) => void;
-		onOcrFontSizeChange: (fontSize: string) => void;
-		onSuspectedFraudChange: (flagged: boolean) => void;
 	};
 
-	let {
-		document,
-		showAnomalies = true,
-		showOcr = true,
-		ocrColor = 'blue',
-		ocrFocus = 'medium',
-		ocrFontSize = 'medium',
-		suspectedFraud = false,
-		onToggleAnomalies,
-		onToggleOcr,
-		onOcrColorChange,
-		onOcrFocusChange,
-		onOcrFontSizeChange,
-		onSuspectedFraudChange
-	}: Props = $props();
-
-	let scale = $state(1);
-	const minScale = 0.75;
-	const maxScale = 3;
-	const scaleStep = 0.25;
-
+	let { document }: Props = $props();
 	const image = $derived(document.images[0]);
+
+	// zoom context
+	const context = createZoomContext();
+	setContext<ZoomContext>(ZOOM, context);
+
+	const zoomContext = useZoomContext();
+
+	const docViewerContext = useDocViewerContext();
+
+	const isSuspectedFraud = $derived(docViewerContext.isSuspectedFraud);
+	const showOcr = $derived(isEnabled(docViewerContext.searchParams.ocr));
+	const showAnomalies = $derived(isEnabled(docViewerContext.searchParams.anomalies));
+	const ocrColor = $derived(docViewerContext.searchParams.ocrColor);
+	const ocrFocus = $derived(docViewerContext.searchParams.ocrFocus);
+	const ocrFontSize = $derived(docViewerContext.searchParams.ocrFontSize);
 
 	/*
 	 * Sort anomalies in reading order (top-to-bottom, left-to-right)
@@ -57,50 +52,37 @@
 		})
 	);
 
-	function zoomIn() {
-		scale = Math.min(maxScale, scale + scaleStep);
-	}
-
-	function zoomOut() {
-		scale = Math.max(minScale, scale - scaleStep);
-	}
-
-	function resetZoom() {
-		scale = 1;
-	}
-
 	function handleKeydown(event: KeyboardEvent) {
 		if (!event.altKey || !event.shiftKey) {
 			return;
 		}
 
-		// todo: this needs to be tested on windows and linux
 		if (event.code === 'KeyF') {
 			event.preventDefault();
-			onToggleAnomalies?.(!showAnomalies);
+			docViewerContext.searchParams.anomalies = toBooleanSearchParam(!showAnomalies);
 		} else if (event.code === 'KeyO') {
 			event.preventDefault();
-			onToggleOcr?.(!showOcr);
+			docViewerContext.searchParams.ocr = toBooleanSearchParam(!showOcr);
 		} else if (event.code === 'KeyS') {
 			event.preventDefault();
-			onSuspectedFraudChange?.(!suspectedFraud);
+			docViewerContext.isSuspectedFraud = !isSuspectedFraud;
 		} else if (
 			event.code === 'Minus' ||
 			event.code === 'Slash' ||
 			event.code === 'NumpadSubtract'
 		) {
 			event.preventDefault();
-			zoomOut();
+			zoomContext.out();
 		} else if (
 			event.code === 'Equal' ||
 			event.code === 'BracketRight' ||
 			event.code === 'NumpadAdd'
 		) {
 			event.preventDefault();
-			zoomIn();
+			zoomContext.in();
 		} else if (event.code === 'Digit0' || event.code === 'Numpad0') {
 			event.preventDefault();
-			resetZoom();
+			zoomContext.reset();
 		}
 	}
 </script>
@@ -111,23 +93,31 @@
 	<div class="min-h-0 flex-1 overflow-auto bg-transparent">
 		<div class="flex min-h-full w-fit min-w-full items-center justify-center p-2">
 			<div
-				class="relative {suspectedFraud ? 'ring-4 ring-red-500 ring-offset-4' : ''}"
-				style="width: {image.width * scale}px; height: {image.height * scale}px;"
+				class="relative {isSuspectedFraud ? 'ring-4 ring-red-500 ring-offset-4' : ''}"
+				style="width: {image.width * zoomContext.scale}px; height: {image.height *
+					zoomContext.scale}px;"
 			>
 				<img
 					src={image.url}
 					alt="Document"
 					class="block"
-					style="width: {image.width * scale}px; height: {image.height * scale}px;"
+					style="width: {image.width * zoomContext.scale}px; height: {image.height *
+						zoomContext.scale}px;"
 				/>
 				{#if showOcr}
 					{#each document.ocrs as ocr, i (i)}
-						<OcrOverlay {ocr} {scale} color={ocrColor} focus={ocrFocus} fontSize={ocrFontSize} />
+						<OcrOverlay
+							{ocr}
+							scale={zoomContext.scale}
+							color={ocrColor}
+							focus={ocrFocus}
+							fontSize={ocrFontSize}
+						/>
 					{/each}
 				{/if}
 				{#if showAnomalies}
 					{#each sortedAnomalies as anomaly (anomaly.id)}
-						<AnomalyOverlay {anomaly} {scale} />
+						<AnomalyOverlay {anomaly} scale={zoomContext.scale} />
 					{/each}
 				{/if}
 			</div>
@@ -136,23 +126,6 @@
 	<div class="relative -mx-4 h-[1px] border-t border-zinc-200 bg-white px-8"></div>
 	<div class="relative flex h-[60px] items-center justify-center bg-zinc-50">
 		<ShortcutsButton />
-		<DocumentViewerToolbar
-			{scale}
-			{showAnomalies}
-			{showOcr}
-			{ocrColor}
-			{ocrFocus}
-			{ocrFontSize}
-			{suspectedFraud}
-			onZoomIn={zoomIn}
-			onZoomOut={zoomOut}
-			onReset={resetZoom}
-			{onToggleAnomalies}
-			{onToggleOcr}
-			{onOcrColorChange}
-			{onOcrFocusChange}
-			{onOcrFontSizeChange}
-			{onSuspectedFraudChange}
-		/>
+		<DocumentViewerToolbar />
 	</div>
 </div>

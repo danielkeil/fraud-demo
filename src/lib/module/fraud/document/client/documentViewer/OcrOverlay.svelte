@@ -5,13 +5,14 @@
 		ocrColors,
 		ocrFocusOptions,
 		ocrFontSizes,
-		type OcrColor
-	} from './toolbar/OcrSettings.svelte';
+		type OcrColor,
+		type ColorKey
+	} from './toolbar/ocrSettings/ocrSettings.ts';
 
 	type Props = {
 		ocr: Ocr;
 		scale: number;
-		color?: string;
+		color?: ColorKey;
 		focus?: string;
 		fontSize?: string;
 	};
@@ -21,10 +22,10 @@
 	const renderRect = $derived(uniformScaleStrategy(ocr.rect, scale));
 	const colorConfig = $derived(ocrColors.find((c: OcrColor) => c.key === color) ?? ocrColors[0]);
 	const focusConfig = $derived(ocrFocusOptions.find((f) => f.key === focus) ?? ocrFocusOptions[1]);
-	const fontSizeConfig = $derived(ocrFontSizes.find((f) => f.key === fontSize) ?? ocrFontSizes[1]);
+	const fontSizeConfig = $derived(ocrFontSizes.find((f) => f.key === fontSize) ?? ocrFontSizes[2]);
 
 	// Map color key to Tailwind bg class - using lighter shades for better contrast
-	const bgColorMap: Record<string, string> = {
+	const bgColorMap: Record<ColorKey, string> = {
 		blue: 'bg-blue-100/80',
 		purple: 'bg-purple-100/80',
 		cyan: 'bg-cyan-100/80',

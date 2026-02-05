@@ -4,51 +4,26 @@
 	import Toggle from '$lib/designSystem/primitives/Toggle.svelte';
 	import SuspectedFraudButton from './SuspectedFraudButton.svelte';
 
-	import { ocrColors, type OcrColor } from './OcrSettings.svelte';
-	import OcrSettings from './OcrSettings.svelte';
+	import { useZoomContext } from '../_context/zoomContext.svelte.js';
+	import { useDocViewerContext } from '$lib/module/fraud/document/client/documentViewer/_context/docViewerContext.svelte.js';
+	import { isEnabled } from '$lib/module/fraud/document/domain/viewerOptions.schema.js';
+	import OcrSettingsButton from '$lib/module/fraud/document/client/documentViewer/toolbar/ocrSettings/OcrSettingsButton.svelte';
 
-	type Props = {
-		scale: number;
-		showAnomalies: boolean;
-		showOcr: boolean;
-		ocrColor: string;
-		ocrFocus: string;
-		ocrFontSize: string;
-		suspectedFraud: boolean;
-		onZoomIn: () => void;
-		onZoomOut: () => void;
-		onReset: () => void;
-		onToggleAnomalies: (show: boolean) => void;
-		onToggleOcr: (show: boolean) => void;
-		onOcrColorChange: (color: string) => void;
-		onOcrFocusChange: (focus: string) => void;
-		onOcrFontSizeChange: (fontSize: string) => void;
-		onSuspectedFraudChange: (flagged: boolean) => void;
+	const zoomContext = useZoomContext();
+	const scalePercent = $derived(Math.round(zoomContext.scale * 100));
+
+	// Document Viewer Context
+	const docViewerContext = useDocViewerContext();
+
+	const showOcr = $derived(isEnabled(docViewerContext.searchParams.ocr));
+	const onToggleOcr = (value: boolean) => {
+		docViewerContext.searchParams.ocr = value ? '1' : '0';
 	};
 
-	let {
-		scale,
-		showAnomalies,
-		showOcr,
-		ocrColor,
-		ocrFocus,
-		ocrFontSize,
-		suspectedFraud,
-		onZoomIn,
-		onZoomOut,
-		onReset,
-		onToggleAnomalies,
-		onToggleOcr,
-		onOcrColorChange,
-		onOcrFocusChange,
-		onOcrFontSizeChange,
-		onSuspectedFraudChange
-	}: Props = $props();
-
-	const scalePercent = $derived(Math.round(scale * 100));
-	const currentColor = $derived(
-		ocrColors.find((c: OcrColor) => c.key === ocrColor) ?? ocrColors[0]
-	);
+	const showAnomalies = $derived(isEnabled(docViewerContext.searchParams.anomalies));
+	const onToggleAnomalies = (value: boolean) => {
+		docViewerContext.searchParams.anomalies = value ? '1' : '0';
+	};
 </script>
 
 {#snippet separator()}
@@ -64,32 +39,15 @@
 
 	{@render separator()}
 
-	<Popover.Root>
-		<Popover.Trigger
-			class="size-6 rounded-full {currentColor.swatch} ring-offset-2 transition-transform outline-none hover:scale-110 focus:ring-2 focus:ring-yellow-400"
-			aria-label="OCR-Farbe ändern"
-		/>
-		<Popover.Portal>
-			<Popover.Content side="top" align="center" sideOffset={12} class="z-50">
-				<OcrSettings
-					color={ocrColor}
-					focus={ocrFocus}
-					fontSize={ocrFontSize}
-					onColorChange={onOcrColorChange}
-					onFocusChange={onOcrFocusChange}
-					onFontSizeChange={onOcrFontSizeChange}
-				/>
-			</Popover.Content>
-		</Popover.Portal>
-	</Popover.Root>
+	<OcrSettingsButton />
 
 	{@render separator()}
 
-	<Button variant="plain" onclick={onZoomOut}>-</Button>
-	<Button variant="plain" class="w-12" onclick={onReset}>{scalePercent}%</Button>
-	<Button variant="plain" onclick={onZoomIn}>+</Button>
+	<Button variant="plain" onclick={() => zoomContext.out()}>-</Button>
+	<Button variant="plain" class="w-12" onclick={() => zoomContext.reset()}>{scalePercent}%</Button>
+	<Button variant="plain" onclick={() => zoomContext.in()}>+</Button>
 
 	{@render separator()}
 
-	<SuspectedFraudButton isFlagged={suspectedFraud} onToggle={onSuspectedFraudChange} />
+	<SuspectedFraudButton />
 </div>
