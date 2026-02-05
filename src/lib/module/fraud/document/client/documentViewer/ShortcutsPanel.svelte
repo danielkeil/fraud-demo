@@ -34,7 +34,7 @@
 		}
 	};
 
-	const currentShortcuts = $derived(shortcuts[platform as keyof typeof shortcuts]);
+	const currentShortcuts = $derived(shortcuts[platform as keyof typeof shortcuts] ?? shortcuts.windows);
 </script>
 
 {#snippet shortcutList(toggle: typeof shortcuts.mac.toggle, zoom: typeof shortcuts.mac.zoom)}
